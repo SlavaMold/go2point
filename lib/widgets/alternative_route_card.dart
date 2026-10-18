@@ -3,11 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../theme/app_colors.dart';
 
-enum AlternativeRouteType {
-  cheapest,
-  balanced,
-  luxury,
-}
+enum AlternativeRouteType { cheapest, balanced, luxury }
 
 class AlternativeRouteCard extends StatelessWidget {
   final AlternativeRouteType type;
@@ -40,19 +36,6 @@ class AlternativeRouteCard extends StatelessWidget {
     this.isRecommended = false,
   });
 
-  Color get borderColor {
-    switch (type) {
-      case AlternativeRouteType.cheapest:
-        return Colors.green;
-
-      case AlternativeRouteType.balanced:
-        return Colors.amber;
-
-      case AlternativeRouteType.luxury:
-        return AppColors.purple;
-    }
-  }
-
   IconData get routeIcon {
     switch (type) {
       case AlternativeRouteType.cheapest:
@@ -81,29 +64,33 @@ class AlternativeRouteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final statuses = Theme.of(context).extension<AppStatusColors>()!;
+    final borderColor = switch (type) {
+      AlternativeRouteType.cheapest => statuses.success,
+      AlternativeRouteType.balanced => statuses.warning,
+      AlternativeRouteType.luxury => scheme.primary,
+    };
+    final foregroundColor = switch (type) {
+      AlternativeRouteType.cheapest => statuses.onSuccess,
+      AlternativeRouteType.balanced => statuses.onWarning,
+      AlternativeRouteType.luxury => scheme.onPrimary,
+    };
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 10,
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
 
       padding: const EdgeInsets.all(20),
 
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: scheme.surface,
 
         borderRadius: BorderRadius.circular(24),
 
-        border: Border.all(
-          color: borderColor,
-          width: 2,
-        ),
+        border: Border.all(color: borderColor, width: 2),
 
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(
-              alpha: 0.04,
-            ),
+            color: scheme.shadow.withValues(alpha: 0.04),
             blurRadius: 14,
             offset: const Offset(0, 6),
           ),
@@ -112,204 +99,180 @@ class AlternativeRouteCard extends StatelessWidget {
 
       child: SingleChildScrollView(
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             // HEADER
             Row(
-                children: [
+              children: [
                 Container(
-                    width: 44,
-                    height: 44,
-                    decoration: BoxDecoration(
-                    color: borderColor.withValues(
-                        alpha: 0.12,
-                    ),
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: borderColor.withValues(alpha: 0.12),
                     shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                    routeIcon,
-                    color: borderColor,
-                    ),
+                  ),
+                  child: Icon(routeIcon, color: borderColor),
                 ),
 
                 const SizedBox(width: 12),
 
                 Expanded(
-                    child: Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                        Text(
+                      Text(
                         typeLabel,
                         style: GoogleFonts.quicksand(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: 1.2,
-                            color: borderColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 1.2,
+                          color: borderColor,
                         ),
-                        ),
+                      ),
 
-                        const SizedBox(height: 2),
+                      const SizedBox(height: 2),
 
-                        Text(
+                      Text(
                         title,
                         style: GoogleFonts.quicksand(
-                            fontSize: 19,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.darkText,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w800,
+                          color: scheme.onSurface,
                         ),
-                        ),
+                      ),
                     ],
-                    ),
+                  ),
                 ),
 
                 if (isRecommended)
-                    Container(
+                  Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
+                      horizontal: 10,
+                      vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                        color: AppColors.lightPurple,
-                        borderRadius: BorderRadius.circular(12),
+                      color: scheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                        'Recommended',
-                        style: GoogleFonts.quicksand(
+                      'Recommended',
+                      style: GoogleFonts.quicksand(
                         fontSize: 11,
                         fontWeight: FontWeight.w800,
-                        color: AppColors.purple,
-                        ),
+                        color: scheme.primary,
+                      ),
                     ),
-                    ),
-                ],
+                  ),
+              ],
             ),
 
             const SizedBox(height: 24),
 
             // PRICE + TIME
             Row(
-                children: [
+              children: [
                 Expanded(
-                    child: _MainValue(
-                    label: 'Total price',
-                    value: price,
-                    ),
+                  child: _MainValue(label: 'Total price', value: price),
                 ),
 
-                Container(
-                    width: 1,
-                    height: 48,
-                    color: AppColors.lightPurple,
-                ),
+                Container(width: 1, height: 48, color: scheme.primaryContainer),
 
                 Expanded(
-                    child: _MainValue(
-                    label: 'Travel time',
-                    value: travelTime,
-                    ),
+                  child: _MainValue(label: 'Travel time', value: travelTime),
                 ),
-                ],
+              ],
             ),
 
             const SizedBox(height: 24),
 
             _InfoRow(
-                icon: Icons.route_outlined,
-                title: 'Transport',
-                value: transportChain,
+              icon: Icons.route_outlined,
+              title: 'Transport',
+              value: transportChain,
             ),
 
             const SizedBox(height: 14),
 
             _InfoRow(
-                icon: Icons.sync_alt_rounded,
-                title: 'Transfers',
-                value: transfers,
+              icon: Icons.sync_alt_rounded,
+              title: 'Transfers',
+              value: transfers,
             ),
 
             const SizedBox(height: 14),
 
             _InfoRow(
-                icon: Icons.hotel_outlined,
-                title: 'Stay',
-                value: hotelInfo,
+              icon: Icons.hotel_outlined,
+              title: 'Stay',
+              value: hotelInfo,
             ),
 
             const SizedBox(height: 22),
 
             Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(
-                horizontal: 14,
-                vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                color: borderColor.withValues(
-                    alpha: 0.08,
-                ),
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              decoration: BoxDecoration(
+                color: borderColor.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(16),
-                ),
-                child: Text(
+              ),
+              child: Text(
                 budgetDifference,
                 style: GoogleFonts.quicksand(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.darkText,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                  color: scheme.onSurface,
                 ),
-                ),
+              ),
             ),
 
             const SizedBox(height: 24),
 
             SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: ElevatedButton(
+              width: double.infinity,
+              height: 52,
+              child: ElevatedButton(
                 onPressed: onViewRoute,
                 style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    backgroundColor: borderColor,
-                    foregroundColor: AppColors.white,
-                    shape: RoundedRectangleBorder(
+                  elevation: 0,
+                  backgroundColor: borderColor,
+                  foregroundColor: foregroundColor,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
-                    ),
+                  ),
                 ),
                 child: Text(
-                    'View route',
-                    style: GoogleFonts.quicksand(
+                  'View route',
+                  style: GoogleFonts.quicksand(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    ),
+                  ),
                 ),
-                ),
+              ),
             ),
 
             const SizedBox(height: 10),
 
             SizedBox(
-                width: double.infinity,
-                child: TextButton.icon(
+              width: double.infinity,
+              child: TextButton.icon(
                 onPressed: onSave,
-                icon: const Icon(
-                    Icons.bookmark_border_rounded,
-                ),
+                icon: const Icon(Icons.bookmark_border_rounded),
                 label: Text(
-                    'Save route',
-                    style: GoogleFonts.quicksand(
+                  'Save route',
+                  style: GoogleFonts.quicksand(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
-                    ),
+                  ),
                 ),
-                style: TextButton.styleFrom(
-                    foregroundColor: AppColors.darkText,
-                ),
-                ),
+                style: TextButton.styleFrom(foregroundColor: scheme.onSurface),
+              ),
             ),
 
             const SizedBox(height: 4),
-            ],
+          ],
         ),
-        ),
+      ),
     );
   }
 }
@@ -318,13 +281,11 @@ class _MainValue extends StatelessWidget {
   final String label;
   final String value;
 
-  const _MainValue({
-    required this.label,
-    required this.value,
-  });
+  const _MainValue({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         Text(
@@ -334,7 +295,7 @@ class _MainValue extends StatelessWidget {
           style: GoogleFonts.quicksand(
             fontSize: 24,
             fontWeight: FontWeight.w800,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
 
@@ -347,7 +308,7 @@ class _MainValue extends StatelessWidget {
           style: GoogleFonts.quicksand(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: AppColors.secondaryText,
+            color: scheme.onSurfaceVariant,
           ),
         ),
       ],
@@ -368,14 +329,11 @@ class _InfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(
-          icon,
-          size: 20,
-          color: AppColors.secondaryText,
-        ),
+        Icon(icon, size: 20, color: scheme.onSurfaceVariant),
 
         const SizedBox(width: 10),
 
@@ -388,7 +346,7 @@ class _InfoRow extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.secondaryText,
+                  color: scheme.onSurfaceVariant,
                 ),
               ),
 
@@ -399,7 +357,7 @@ class _InfoRow extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
             ],

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
-
 class RouteSummaryCard extends StatelessWidget {
   final String destination;
   final String event;
@@ -17,12 +15,13 @@ class RouteSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
 
       decoration: BoxDecoration(
-        color: AppColors.lightPurple,
+        color: scheme.primaryContainer,
         borderRadius: BorderRadius.circular(22),
       ),
 
@@ -31,11 +30,7 @@ class RouteSummaryCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(
-                Icons.location_on_outlined,
-                color: AppColors.purple,
-                size: 24,
-              ),
+              Icon(Icons.location_on_outlined, color: scheme.primary, size: 24),
 
               const SizedBox(width: 8),
 
@@ -45,7 +40,7 @@ class RouteSummaryCard extends StatelessWidget {
                   style: GoogleFonts.quicksand(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,
-                    color: AppColors.darkText,
+                    color: scheme.onSurface,
                   ),
                 ),
               ),
@@ -56,9 +51,9 @@ class RouteSummaryCard extends StatelessWidget {
 
           Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.confirmation_number_outlined,
-                color: AppColors.secondaryText,
+                color: scheme.onSurfaceVariant,
                 size: 20,
               ),
 
@@ -70,7 +65,7 @@ class RouteSummaryCard extends StatelessWidget {
                   style: GoogleFonts.quicksand(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.darkText,
+                    color: scheme.onSurface,
                   ),
                 ),
               ),
@@ -81,9 +76,9 @@ class RouteSummaryCard extends StatelessWidget {
 
           Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.calendar_month_outlined,
-                color: AppColors.secondaryText,
+                color: scheme.onSurfaceVariant,
                 size: 20,
               ),
 
@@ -94,7 +89,7 @@ class RouteSummaryCard extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.secondaryText,
+                  color: scheme.onSurfaceVariant,
                 ),
               ),
             ],

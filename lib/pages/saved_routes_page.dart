@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
 import '../widgets/saved_route_card.dart';
 
 class SavedRoutesPage extends StatefulWidget {
   const SavedRoutesPage({super.key});
 
   @override
-  State<SavedRoutesPage> createState() =>
-      _SavedRoutesPageState();
+  State<SavedRoutesPage> createState() => _SavedRoutesPageState();
 }
 
 class _SavedRoutesPageState extends State<SavedRoutesPage> {
-  final PageController _pageController = PageController(
-    viewportFraction: 0.88,
-  );
+  final PageController _pageController = PageController(viewportFraction: 0.88);
 
   int _currentPage = 0;
 
@@ -30,19 +26,17 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: scheme.surface,
 
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor: scheme.surface,
         elevation: 0,
 
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColors.darkText,
-          ),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
         ),
 
         title: Text(
@@ -50,7 +44,7 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
           style: GoogleFonts.quicksand(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
 
@@ -62,12 +56,7 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(
-                24,
-                20,
-                24,
-                12,
-              ),
+              padding: const EdgeInsets.fromLTRB(24, 20, 24, 12),
 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +66,7 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                     style: GoogleFonts.quicksand(
                       fontSize: 30,
                       fontWeight: FontWeight.w800,
-                      color: AppColors.darkText,
+                      color: scheme.onSurface,
                     ),
                   ),
 
@@ -88,7 +77,7 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                     style: GoogleFonts.quicksand(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.secondaryText,
+                      color: scheme.onSurfaceVariant,
                       height: 1.4,
                     ),
                   ),
@@ -104,10 +93,7 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                   // =========================
 
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 38,
-                    ),
+                    padding: const EdgeInsets.only(left: 16, right: 38),
 
                     child: PageView(
                       controller: _pageController,
@@ -124,14 +110,11 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                         SavedRouteCard(
                           destination: 'Budapest, Hungary',
                           event: 'Metallica concert',
-                          dateRange:
-                              '13/10/2026 — 16/10/2026',
+                          dateRange: '13/10/2026 — 16/10/2026',
                           price: '€575',
                           travelTime: '5 h 20 min',
-                          transportChain:
-                              'Direct flight → Metro',
-                          hotelInfo:
-                              '3★ hotel · 3 nights',
+                          transportChain: 'Direct flight → Metro',
+                          hotelInfo: '3★ hotel · 3 nights',
                           onTap: () {},
                           onEdit: () {},
                           onRemove: () {},
@@ -140,14 +123,11 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                         SavedRouteCard(
                           destination: 'Bucharest, Romania',
                           event: 'Rock Festival',
-                          dateRange:
-                              '04/08/2026 — 07/08/2026',
+                          dateRange: '04/08/2026 — 07/08/2026',
                           price: '€310',
                           travelTime: '7 h 15 min',
-                          transportChain:
-                              'Train → Taxi',
-                          hotelInfo:
-                              '3★ hotel · 3 nights',
+                          transportChain: 'Train → Taxi',
+                          hotelInfo: '3★ hotel · 3 nights',
                           onTap: () {},
                           onEdit: () {},
                           onRemove: () {},
@@ -156,14 +136,11 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                         SavedRouteCard(
                           destination: 'Vienna, Austria',
                           event: 'Art Exhibition',
-                          dateRange:
-                              '21/11/2026 — 25/11/2026',
+                          dateRange: '21/11/2026 — 25/11/2026',
                           price: '€690',
                           travelTime: '4 h 10 min',
-                          transportChain:
-                              'Flight → Airport train',
-                          hotelInfo:
-                              '4★ hotel · 4 nights',
+                          transportChain: 'Flight → Airport train',
+                          hotelInfo: '4★ hotel · 4 nights',
                           onTap: () {},
                           onEdit: () {},
                           onRemove: () {},
@@ -172,14 +149,11 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                         SavedRouteCard(
                           destination: 'Prague, Czech Republic',
                           event: 'Music Festival',
-                          dateRange:
-                              '02/06/2027 — 06/06/2027',
+                          dateRange: '02/06/2027 — 06/06/2027',
                           price: '€520',
                           travelTime: '6 h 05 min',
-                          transportChain:
-                              'Flight → Bus → Tram',
-                          hotelInfo:
-                              '3★ hotel · 4 nights',
+                          transportChain: 'Flight → Bus → Tram',
+                          hotelInfo: '3★ hotel · 4 nights',
                           onTap: () {},
                           onEdit: () {},
                           onRemove: () {},
@@ -191,7 +165,6 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                   // =========================
                   // PAGE INDICATOR
                   // =========================
-
                   Positioned(
                     right: 12,
                     top: 0,
@@ -201,37 +174,27 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
 
-                        children: List.generate(
-                          _routesCount,
-                          (index) {
-                            final isActive =
-                                index == _currentPage;
+                        children: List.generate(_routesCount, (index) {
+                          final isActive = index == _currentPage;
 
-                            return AnimatedContainer(
-                              duration: const Duration(
-                                milliseconds: 200,
-                              ),
+                          return AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
 
-                              margin:
-                                  const EdgeInsets.symmetric(
-                                vertical: 4,
-                              ),
+                            margin: const EdgeInsets.symmetric(vertical: 4),
 
-                              width: 8,
+                            width: 8,
 
-                              height: isActive ? 22 : 8,
+                            height: isActive ? 22 : 8,
 
-                              decoration: BoxDecoration(
-                                color: isActive
-                                    ? AppColors.purple
-                                    : AppColors.lightPurple,
+                            decoration: BoxDecoration(
+                              color: isActive
+                                  ? scheme.primary
+                                  : scheme.primaryContainer,
 
-                                borderRadius:
-                                    BorderRadius.circular(10),
-                              ),
-                            );
-                          },
-                        ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          );
+                        }),
                       ),
                     ),
                   ),

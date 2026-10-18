@@ -29,96 +29,81 @@ class _EditRoutePageState extends State<EditRoutePage> {
   static const String _originalFlightArrival = '13/10/2026';
   static const String _originalFlightPrice = '145';
 
-  static const String _originalAirportTransferFrom =
-      'Budapest Airport';
-  static const String _originalAirportTransferTo =
-      'City center';
+  static const String _originalAirportTransferFrom = 'Budapest Airport';
+  static const String _originalAirportTransferTo = 'City center';
   static const String _originalAirportTransferPrice = '12';
 
-  static const String _originalHotelName =
-      'Central Budapest Hotel';
+  static const String _originalHotelName = 'Central Budapest Hotel';
   static const String _originalHotelCheckIn = '13/10/2026';
   static const String _originalHotelCheckOut = '16/10/2026';
   static const String _originalHotelPrice = '198';
 
-  static const String _originalEventName =
-      'Metallica concert';
-  static const String _originalEventAddress =
-      'Budapest Arena';
+  static const String _originalEventName = 'Metallica concert';
+  static const String _originalEventAddress = 'Budapest Arena';
   static const String _originalEventDate = '14/10/2026';
   static const String _originalEventPrice = '85';
 
-  static const String _originalLocalTransportFrom =
-      'Hotel';
-  static const String _originalLocalTransportTo =
-      'Budapest Arena';
+  static const String _originalLocalTransportFrom = 'Hotel';
+  static const String _originalLocalTransportTo = 'Budapest Arena';
   static const String _originalLocalTransportPrice = '25';
 
-  static const String _originalReturnFrom =
-      'City center';
-  static const String _originalReturnTo =
-      'Budapest Airport';
+  static const String _originalReturnFrom = 'City center';
+  static const String _originalReturnTo = 'Budapest Airport';
   static const String _originalReturnPrice = '12';
 
   // =====================================================
   // CONTROLLERS — FLIGHT
   // =====================================================
 
-  final TextEditingController _flightFromController =
-      TextEditingController(text: _originalFlightFrom);
+  final TextEditingController _flightFromController = TextEditingController(
+    text: _originalFlightFrom,
+  );
 
-  final TextEditingController _flightToController =
-      TextEditingController(text: _originalFlightTo);
+  final TextEditingController _flightToController = TextEditingController(
+    text: _originalFlightTo,
+  );
 
   final TextEditingController _flightDepartureController =
       TextEditingController(text: _originalFlightDeparture);
 
-  final TextEditingController _flightArrivalController =
-      TextEditingController(text: _originalFlightArrival);
+  final TextEditingController _flightArrivalController = TextEditingController(
+    text: _originalFlightArrival,
+  );
 
-  final TextEditingController _flightPriceController =
-      TextEditingController(text: _originalFlightPrice);
+  final TextEditingController _flightPriceController = TextEditingController(
+    text: _originalFlightPrice,
+  );
 
   // =====================================================
   // CONTROLLERS — AIRPORT TRANSFER
   // =====================================================
 
   final TextEditingController _airportTransferFromController =
-      TextEditingController(
-    text: _originalAirportTransferFrom,
-  );
+      TextEditingController(text: _originalAirportTransferFrom);
 
   final TextEditingController _airportTransferToController =
-      TextEditingController(
-    text: _originalAirportTransferTo,
-  );
+      TextEditingController(text: _originalAirportTransferTo);
 
   final TextEditingController _airportTransferPriceController =
-      TextEditingController(
-    text: _originalAirportTransferPrice,
-  );
+      TextEditingController(text: _originalAirportTransferPrice);
 
   // =====================================================
   // CONTROLLERS — HOTEL
   // =====================================================
 
-  final TextEditingController _hotelNameController =
-      TextEditingController(
+  final TextEditingController _hotelNameController = TextEditingController(
     text: _originalHotelName,
   );
 
-  final TextEditingController _hotelCheckInController =
-      TextEditingController(
+  final TextEditingController _hotelCheckInController = TextEditingController(
     text: _originalHotelCheckIn,
   );
 
-  final TextEditingController _hotelCheckOutController =
-      TextEditingController(
+  final TextEditingController _hotelCheckOutController = TextEditingController(
     text: _originalHotelCheckOut,
   );
 
-  final TextEditingController _hotelPriceController =
-      TextEditingController(
+  final TextEditingController _hotelPriceController = TextEditingController(
     text: _originalHotelPrice,
   );
 
@@ -126,23 +111,19 @@ class _EditRoutePageState extends State<EditRoutePage> {
   // CONTROLLERS — EVENT
   // =====================================================
 
-  final TextEditingController _eventNameController =
-      TextEditingController(
+  final TextEditingController _eventNameController = TextEditingController(
     text: _originalEventName,
   );
 
-  final TextEditingController _eventAddressController =
-      TextEditingController(
+  final TextEditingController _eventAddressController = TextEditingController(
     text: _originalEventAddress,
   );
 
-  final TextEditingController _eventDateController =
-      TextEditingController(
+  final TextEditingController _eventDateController = TextEditingController(
     text: _originalEventDate,
   );
 
-  final TextEditingController _eventPriceController =
-      TextEditingController(
+  final TextEditingController _eventPriceController = TextEditingController(
     text: _originalEventPrice,
   );
 
@@ -151,36 +132,27 @@ class _EditRoutePageState extends State<EditRoutePage> {
   // =====================================================
 
   final TextEditingController _localTransportFromController =
-      TextEditingController(
-    text: _originalLocalTransportFrom,
-  );
+      TextEditingController(text: _originalLocalTransportFrom);
 
   final TextEditingController _localTransportToController =
-      TextEditingController(
-    text: _originalLocalTransportTo,
-  );
+      TextEditingController(text: _originalLocalTransportTo);
 
   final TextEditingController _localTransportPriceController =
-      TextEditingController(
-    text: _originalLocalTransportPrice,
-  );
+      TextEditingController(text: _originalLocalTransportPrice);
 
   // =====================================================
   // CONTROLLERS — RETURN TO AIRPORT
   // =====================================================
 
-  final TextEditingController _returnFromController =
-      TextEditingController(
+  final TextEditingController _returnFromController = TextEditingController(
     text: _originalReturnFrom,
   );
 
-  final TextEditingController _returnToController =
-      TextEditingController(
+  final TextEditingController _returnToController = TextEditingController(
     text: _originalReturnTo,
   );
 
-  final TextEditingController _returnPriceController =
-      TextEditingController(
+  final TextEditingController _returnPriceController = TextEditingController(
     text: _originalReturnPrice,
   );
 
@@ -200,29 +172,29 @@ class _EditRoutePageState extends State<EditRoutePage> {
   }
 
   List<TextEditingController> get _allControllers => [
-        _flightFromController,
-        _flightToController,
-        _flightDepartureController,
-        _flightArrivalController,
-        _flightPriceController,
-        _airportTransferFromController,
-        _airportTransferToController,
-        _airportTransferPriceController,
-        _hotelNameController,
-        _hotelCheckInController,
-        _hotelCheckOutController,
-        _hotelPriceController,
-        _eventNameController,
-        _eventAddressController,
-        _eventDateController,
-        _eventPriceController,
-        _localTransportFromController,
-        _localTransportToController,
-        _localTransportPriceController,
-        _returnFromController,
-        _returnToController,
-        _returnPriceController,
-      ];
+    _flightFromController,
+    _flightToController,
+    _flightDepartureController,
+    _flightArrivalController,
+    _flightPriceController,
+    _airportTransferFromController,
+    _airportTransferToController,
+    _airportTransferPriceController,
+    _hotelNameController,
+    _hotelCheckInController,
+    _hotelCheckOutController,
+    _hotelPriceController,
+    _eventNameController,
+    _eventAddressController,
+    _eventDateController,
+    _eventPriceController,
+    _localTransportFromController,
+    _localTransportToController,
+    _localTransportPriceController,
+    _returnFromController,
+    _returnToController,
+    _returnPriceController,
+  ];
 
   void _onRouteChanged() {
     if (!mounted) {
@@ -241,34 +213,23 @@ class _EditRoutePageState extends State<EditRoutePage> {
   bool get _hasChanges {
     return _flightFromController.text != _originalFlightFrom ||
         _flightToController.text != _originalFlightTo ||
-        _flightDepartureController.text !=
-            _originalFlightDeparture ||
-        _flightArrivalController.text !=
-            _originalFlightArrival ||
+        _flightDepartureController.text != _originalFlightDeparture ||
+        _flightArrivalController.text != _originalFlightArrival ||
         _flightPriceController.text != _originalFlightPrice ||
-        _airportTransferFromController.text !=
-            _originalAirportTransferFrom ||
-        _airportTransferToController.text !=
-            _originalAirportTransferTo ||
-        _airportTransferPriceController.text !=
-            _originalAirportTransferPrice ||
+        _airportTransferFromController.text != _originalAirportTransferFrom ||
+        _airportTransferToController.text != _originalAirportTransferTo ||
+        _airportTransferPriceController.text != _originalAirportTransferPrice ||
         _hotelNameController.text != _originalHotelName ||
-        _hotelCheckInController.text !=
-            _originalHotelCheckIn ||
-        _hotelCheckOutController.text !=
-            _originalHotelCheckOut ||
+        _hotelCheckInController.text != _originalHotelCheckIn ||
+        _hotelCheckOutController.text != _originalHotelCheckOut ||
         _hotelPriceController.text != _originalHotelPrice ||
         _eventNameController.text != _originalEventName ||
-        _eventAddressController.text !=
-            _originalEventAddress ||
+        _eventAddressController.text != _originalEventAddress ||
         _eventDateController.text != _originalEventDate ||
         _eventPriceController.text != _originalEventPrice ||
-        _localTransportFromController.text !=
-            _originalLocalTransportFrom ||
-        _localTransportToController.text !=
-            _originalLocalTransportTo ||
-        _localTransportPriceController.text !=
-            _originalLocalTransportPrice ||
+        _localTransportFromController.text != _originalLocalTransportFrom ||
+        _localTransportToController.text != _originalLocalTransportTo ||
+        _localTransportPriceController.text != _originalLocalTransportPrice ||
         _returnFromController.text != _originalReturnFrom ||
         _returnToController.text != _originalReturnTo ||
         _returnPriceController.text != _originalReturnPrice;
@@ -279,9 +240,7 @@ class _EditRoutePageState extends State<EditRoutePage> {
   // =====================================================
 
   double _parsePrice(TextEditingController controller) {
-    final text = controller.text
-        .trim()
-        .replaceAll(',', '.');
+    final text = controller.text.trim().replaceAll(',', '.');
 
     return double.tryParse(text) ?? 0;
   }
@@ -325,9 +284,7 @@ class _EditRoutePageState extends State<EditRoutePage> {
   // DATE PICKER
   // =====================================================
 
-  Future<void> _selectDate(
-    TextEditingController controller,
-  ) async {
+  Future<void> _selectDate(TextEditingController controller) async {
     final selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -341,11 +298,9 @@ class _EditRoutePageState extends State<EditRoutePage> {
   }
 
   String _formatDate(DateTime date) {
-    final day =
-        date.day.toString().padLeft(2, '0');
+    final day = date.day.toString().padLeft(2, '0');
 
-    final month =
-        date.month.toString().padLeft(2, '0');
+    final month = date.month.toString().padLeft(2, '0');
 
     return '$day/$month/${date.year}';
   }
@@ -358,65 +313,45 @@ class _EditRoutePageState extends State<EditRoutePage> {
     _flightFromController.text = _originalFlightFrom;
     _flightToController.text = _originalFlightTo;
 
-    _flightDepartureController.text =
-        _originalFlightDeparture;
+    _flightDepartureController.text = _originalFlightDeparture;
 
-    _flightArrivalController.text =
-        _originalFlightArrival;
+    _flightArrivalController.text = _originalFlightArrival;
 
-    _flightPriceController.text =
-        _originalFlightPrice;
+    _flightPriceController.text = _originalFlightPrice;
 
-    _airportTransferFromController.text =
-        _originalAirportTransferFrom;
+    _airportTransferFromController.text = _originalAirportTransferFrom;
 
-    _airportTransferToController.text =
-        _originalAirportTransferTo;
+    _airportTransferToController.text = _originalAirportTransferTo;
 
-    _airportTransferPriceController.text =
-        _originalAirportTransferPrice;
+    _airportTransferPriceController.text = _originalAirportTransferPrice;
 
-    _hotelNameController.text =
-        _originalHotelName;
+    _hotelNameController.text = _originalHotelName;
 
-    _hotelCheckInController.text =
-        _originalHotelCheckIn;
+    _hotelCheckInController.text = _originalHotelCheckIn;
 
-    _hotelCheckOutController.text =
-        _originalHotelCheckOut;
+    _hotelCheckOutController.text = _originalHotelCheckOut;
 
-    _hotelPriceController.text =
-        _originalHotelPrice;
+    _hotelPriceController.text = _originalHotelPrice;
 
-    _eventNameController.text =
-        _originalEventName;
+    _eventNameController.text = _originalEventName;
 
-    _eventAddressController.text =
-        _originalEventAddress;
+    _eventAddressController.text = _originalEventAddress;
 
-    _eventDateController.text =
-        _originalEventDate;
+    _eventDateController.text = _originalEventDate;
 
-    _eventPriceController.text =
-        _originalEventPrice;
+    _eventPriceController.text = _originalEventPrice;
 
-    _localTransportFromController.text =
-        _originalLocalTransportFrom;
+    _localTransportFromController.text = _originalLocalTransportFrom;
 
-    _localTransportToController.text =
-        _originalLocalTransportTo;
+    _localTransportToController.text = _originalLocalTransportTo;
 
-    _localTransportPriceController.text =
-        _originalLocalTransportPrice;
+    _localTransportPriceController.text = _originalLocalTransportPrice;
 
-    _returnFromController.text =
-        _originalReturnFrom;
+    _returnFromController.text = _originalReturnFrom;
 
-    _returnToController.text =
-        _originalReturnTo;
+    _returnToController.text = _originalReturnTo;
 
-    _returnPriceController.text =
-        _originalReturnPrice;
+    _returnPriceController.text = _originalReturnPrice;
 
     setState(() {
       _isEdited = false;
@@ -443,19 +378,17 @@ class _EditRoutePageState extends State<EditRoutePage> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: scheme.surface,
 
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor: scheme.surface,
         elevation: 0,
 
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColors.darkText,
-          ),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
         ),
 
         title: Text(
@@ -463,7 +396,7 @@ class _EditRoutePageState extends State<EditRoutePage> {
           style: GoogleFonts.quicksand(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
 
@@ -472,12 +405,7 @@ class _EditRoutePageState extends State<EditRoutePage> {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(
-            24,
-            20,
-            24,
-            40,
-          ),
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 40),
 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -491,7 +419,7 @@ class _EditRoutePageState extends State<EditRoutePage> {
                 style: GoogleFonts.quicksand(
                   fontSize: 30,
                   fontWeight: FontWeight.w800,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
 
@@ -502,7 +430,7 @@ class _EditRoutePageState extends State<EditRoutePage> {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.secondaryText,
+                  color: scheme.onSurfaceVariant,
                   height: 1.4,
                 ),
               ),
@@ -517,11 +445,7 @@ class _EditRoutePageState extends State<EditRoutePage> {
               // =================================================
               // FLIGHT
               // =================================================
-
-              _SectionHeader(
-                number: '1',
-                title: 'Transport to destination',
-              ),
+              _SectionHeader(number: '1', title: 'Transport to destination'),
 
               const SizedBox(height: 18),
 
@@ -530,20 +454,14 @@ class _EditRoutePageState extends State<EditRoutePage> {
                 title: 'Flight',
                 fromController: _flightFromController,
                 toController: _flightToController,
-                departureDateController:
-                    _flightDepartureController,
-                arrivalDateController:
-                    _flightArrivalController,
+                departureDateController: _flightDepartureController,
+                arrivalDateController: _flightArrivalController,
                 priceController: _flightPriceController,
                 onDepartureDateTap: () {
-                  _selectDate(
-                    _flightDepartureController,
-                  );
+                  _selectDate(_flightDepartureController);
                 },
                 onArrivalDateTap: () {
-                  _selectDate(
-                    _flightArrivalController,
-                  );
+                  _selectDate(_flightArrivalController);
                 },
               ),
 
@@ -552,12 +470,9 @@ class _EditRoutePageState extends State<EditRoutePage> {
               EditableRouteStepCard(
                 icon: Icons.airport_shuttle_outlined,
                 title: 'Airport transfer',
-                fromController:
-                    _airportTransferFromController,
-                toController:
-                    _airportTransferToController,
-                priceController:
-                    _airportTransferPriceController,
+                fromController: _airportTransferFromController,
+                toController: _airportTransferToController,
+                priceController: _airportTransferPriceController,
               ),
 
               const SizedBox(height: 34),
@@ -565,31 +480,20 @@ class _EditRoutePageState extends State<EditRoutePage> {
               // =================================================
               // HOTEL
               // =================================================
-
-              _SectionHeader(
-                number: '2',
-                title: 'Stay',
-              ),
+              _SectionHeader(number: '2', title: 'Stay'),
 
               const SizedBox(height: 18),
 
               _EditableHotelCard(
                 nameController: _hotelNameController,
-                checkInController:
-                    _hotelCheckInController,
-                checkOutController:
-                    _hotelCheckOutController,
-                priceController:
-                    _hotelPriceController,
+                checkInController: _hotelCheckInController,
+                checkOutController: _hotelCheckOutController,
+                priceController: _hotelPriceController,
                 onCheckInTap: () {
-                  _selectDate(
-                    _hotelCheckInController,
-                  );
+                  _selectDate(_hotelCheckInController);
                 },
                 onCheckOutTap: () {
-                  _selectDate(
-                    _hotelCheckOutController,
-                  );
+                  _selectDate(_hotelCheckOutController);
                 },
               ),
 
@@ -598,27 +502,17 @@ class _EditRoutePageState extends State<EditRoutePage> {
               // =================================================
               // EVENT
               // =================================================
-
-              _SectionHeader(
-                number: '3',
-                title: 'Event',
-              ),
+              _SectionHeader(number: '3', title: 'Event'),
 
               const SizedBox(height: 18),
 
               EditableEventCard(
-                nameController:
-                    _eventNameController,
-                addressController:
-                    _eventAddressController,
-                dateController:
-                    _eventDateController,
-                priceController:
-                    _eventPriceController,
+                nameController: _eventNameController,
+                addressController: _eventAddressController,
+                dateController: _eventDateController,
+                priceController: _eventPriceController,
                 onDateTap: () {
-                  _selectDate(
-                    _eventDateController,
-                  );
+                  _selectDate(_eventDateController);
                 },
               ),
 
@@ -627,23 +521,16 @@ class _EditRoutePageState extends State<EditRoutePage> {
               // =================================================
               // LOCAL TRANSPORT
               // =================================================
-
-              _SectionHeader(
-                number: '4',
-                title: 'Local transport',
-              ),
+              _SectionHeader(number: '4', title: 'Local transport'),
 
               const SizedBox(height: 18),
 
               EditableRouteStepCard(
                 icon: Icons.directions_subway_outlined,
                 title: 'Event transport',
-                fromController:
-                    _localTransportFromController,
-                toController:
-                    _localTransportToController,
-                priceController:
-                    _localTransportPriceController,
+                fromController: _localTransportFromController,
+                toController: _localTransportToController,
+                priceController: _localTransportPriceController,
               ),
 
               const SizedBox(height: 16),
@@ -651,12 +538,9 @@ class _EditRoutePageState extends State<EditRoutePage> {
               EditableRouteStepCard(
                 icon: Icons.airport_shuttle_outlined,
                 title: 'Return to airport',
-                fromController:
-                    _returnFromController,
-                toController:
-                    _returnToController,
-                priceController:
-                    _returnPriceController,
+                fromController: _returnFromController,
+                toController: _returnToController,
+                priceController: _returnPriceController,
               ),
 
               const SizedBox(height: 34),
@@ -664,11 +548,7 @@ class _EditRoutePageState extends State<EditRoutePage> {
               // =================================================
               // PRICE SUMMARY
               // =================================================
-
-              _SectionHeader(
-                number: '5',
-                title: 'Updated price',
-              ),
+              _SectionHeader(number: '5', title: 'Updated price'),
 
               const SizedBox(height: 18),
 
@@ -684,18 +564,14 @@ class _EditRoutePageState extends State<EditRoutePage> {
               // =================================================
               // ACTIONS
               // =================================================
-
               SizedBox(
                 width: double.infinity,
                 height: 56,
 
                 child: OutlinedButton.icon(
-                  onPressed:
-                      _isEdited ? _resetChanges : null,
+                  onPressed: _isEdited ? _resetChanges : null,
 
-                  icon: const Icon(
-                    Icons.restart_alt_rounded,
-                  ),
+                  icon: const Icon(Icons.restart_alt_rounded),
 
                   label: Text(
                     'Reset changes',
@@ -706,16 +582,12 @@ class _EditRoutePageState extends State<EditRoutePage> {
                   ),
 
                   style: OutlinedButton.styleFrom(
-                    foregroundColor:
-                        AppColors.purple,
+                    foregroundColor: scheme.primary,
 
-                    side: const BorderSide(
-                      color: AppColors.purple,
-                    ),
+                    side: BorderSide(color: scheme.primary),
 
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(18),
                     ),
                   ),
                 ),
@@ -751,13 +623,11 @@ class _SectionHeader extends StatelessWidget {
   final String number;
   final String title;
 
-  const _SectionHeader({
-    required this.number,
-    required this.title,
-  });
+  const _SectionHeader({required this.number, required this.title});
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Row(
       children: [
         Container(
@@ -766,8 +636,8 @@ class _SectionHeader extends StatelessWidget {
 
           alignment: Alignment.center,
 
-          decoration: const BoxDecoration(
-            color: AppColors.lightPurple,
+          decoration: BoxDecoration(
+            color: scheme.primaryContainer,
             shape: BoxShape.circle,
           ),
 
@@ -775,7 +645,7 @@ class _SectionHeader extends StatelessWidget {
             number,
             style: GoogleFonts.quicksand(
               fontWeight: FontWeight.w800,
-              color: AppColors.purple,
+              color: scheme.primary,
             ),
           ),
         ),
@@ -787,7 +657,7 @@ class _SectionHeader extends StatelessWidget {
           style: GoogleFonts.quicksand(
             fontSize: 19,
             fontWeight: FontWeight.w800,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
       ],
@@ -819,13 +689,14 @@ class _EditableHotelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
 
       padding: const EdgeInsets.all(18),
 
       decoration: BoxDecoration(
-        color: AppColors.fieldBackground,
+        color: scheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(22),
       ),
 
@@ -838,15 +709,12 @@ class _EditableHotelCard extends StatelessWidget {
                 width: 44,
                 height: 44,
 
-                decoration: const BoxDecoration(
-                  color: AppColors.lightPurple,
+                decoration: BoxDecoration(
+                  color: scheme.primaryContainer,
                   shape: BoxShape.circle,
                 ),
 
-                child: const Icon(
-                  Icons.hotel_outlined,
-                  color: AppColors.purple,
-                ),
+                child: Icon(Icons.hotel_outlined, color: scheme.primary),
               ),
 
               const SizedBox(width: 12),
@@ -857,15 +725,15 @@ class _EditableHotelCard extends StatelessWidget {
                   style: GoogleFonts.quicksand(
                     fontSize: 19,
                     fontWeight: FontWeight.w800,
-                    color: AppColors.darkText,
+                    color: scheme.onSurface,
                   ),
                 ),
               ),
 
-              const Icon(
+              Icon(
                 Icons.edit_outlined,
                 size: 20,
-                color: AppColors.secondaryText,
+                color: scheme.onSurfaceVariant,
               ),
             ],
           ),
@@ -887,10 +755,8 @@ class _EditableHotelCard extends StatelessWidget {
                 child: AppTextField(
                   label: 'Check-in',
                   hint: 'dd/mm/yyyy',
-                  prefixIcon:
-                      Icons.calendar_month_outlined,
-                  controller:
-                      checkInController,
+                  prefixIcon: Icons.calendar_month_outlined,
+                  controller: checkInController,
                   readOnly: true,
                   onTap: onCheckInTap,
                 ),
@@ -902,10 +768,8 @@ class _EditableHotelCard extends StatelessWidget {
                 child: AppTextField(
                   label: 'Check-out',
                   hint: 'dd/mm/yyyy',
-                  prefixIcon:
-                      Icons.calendar_month_outlined,
-                  controller:
-                      checkOutController,
+                  prefixIcon: Icons.calendar_month_outlined,
+                  controller: checkOutController,
                   readOnly: true,
                   onTap: onCheckOutTap,
                 ),
@@ -922,15 +786,10 @@ class _EditableHotelCard extends StatelessWidget {
             prefixIcon: Icons.payments_outlined,
             controller: priceController,
 
-            keyboardType:
-                const TextInputType.numberWithOptions(
-              decimal: true,
-            ),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
 
             inputFormatters: [
-              FilteringTextInputFormatter.allow(
-                RegExp(r'^\d*[.,]?\d{0,2}'),
-              ),
+              FilteringTextInputFormatter.allow(RegExp(r'^\d*[.,]?\d{0,2}')),
             ],
           ),
         ],
@@ -966,6 +825,8 @@ class _PriceComparisonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final statuses = Theme.of(context).extension<AppStatusColors>()!;
     final bool increased = difference > 0;
     final bool decreased = difference < 0;
 
@@ -975,7 +836,7 @@ class _PriceComparisonCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
 
       decoration: BoxDecoration(
-        color: AppColors.lightPurple,
+        color: scheme.primaryContainer,
         borderRadius: BorderRadius.circular(22),
       ),
 
@@ -986,21 +847,16 @@ class _PriceComparisonCard extends StatelessWidget {
               Expanded(
                 child: _PriceValue(
                   label: 'Original',
-                  value:
-                      '€${_formatMoney(originalTotal)}',
+                  value: '€${_formatMoney(originalTotal)}',
                 ),
               ),
 
-              const Icon(
-                Icons.arrow_forward_rounded,
-                color: AppColors.secondaryText,
-              ),
+              Icon(Icons.arrow_forward_rounded, color: scheme.onSurfaceVariant),
 
               Expanded(
                 child: _PriceValue(
                   label: 'Updated',
-                  value:
-                      '€${_formatMoney(updatedTotal)}',
+                  value: '€${_formatMoney(updatedTotal)}',
                 ),
               ),
             ],
@@ -1011,32 +867,28 @@ class _PriceComparisonCard extends StatelessWidget {
           Container(
             width: double.infinity,
 
-            padding: const EdgeInsets.symmetric(
-              horizontal: 14,
-              vertical: 12,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
 
             decoration: BoxDecoration(
-              color: AppColors.white,
+              color: scheme.surface,
               borderRadius: BorderRadius.circular(15),
             ),
 
             child: Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   increased
                       ? Icons.trending_up_rounded
                       : decreased
-                          ? Icons.trending_down_rounded
-                          : Icons.remove_rounded,
+                      ? Icons.trending_down_rounded
+                      : Icons.remove_rounded,
 
                   color: increased
-                      ? Colors.redAccent
+                      ? scheme.error
                       : decreased
-                          ? Colors.green
-                          : AppColors.secondaryText,
+                      ? statuses.success
+                      : scheme.onSurfaceVariant,
                 ),
 
                 const SizedBox(width: 8),
@@ -1048,10 +900,10 @@ class _PriceComparisonCard extends StatelessWidget {
                     fontWeight: FontWeight.w800,
 
                     color: increased
-                        ? Colors.redAccent
+                        ? scheme.error
                         : decreased
-                            ? Colors.green
-                            : AppColors.darkText,
+                        ? statuses.success
+                        : scheme.onSurface,
                   ),
                 ),
 
@@ -1061,7 +913,7 @@ class _PriceComparisonCard extends StatelessWidget {
                   'difference',
                   style: GoogleFonts.quicksand(
                     fontSize: 13,
-                    color: AppColors.secondaryText,
+                    color: scheme.onSurfaceVariant,
                   ),
                 ),
               ],
@@ -1077,20 +929,18 @@ class _PriceValue extends StatelessWidget {
   final String label;
   final String value;
 
-  const _PriceValue({
-    required this.label,
-    required this.value,
-  });
+  const _PriceValue({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         Text(
           label,
           style: GoogleFonts.quicksand(
             fontSize: 12,
-            color: AppColors.secondaryText,
+            color: scheme.onSurfaceVariant,
           ),
         ),
 
@@ -1101,7 +951,7 @@ class _PriceValue extends StatelessWidget {
           style: GoogleFonts.quicksand(
             fontSize: 24,
             fontWeight: FontWeight.w800,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
       ],

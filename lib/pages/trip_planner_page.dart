@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
 import '../widgets/app_button.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/section_title.dart';
@@ -15,22 +14,18 @@ class TripPlannerPage extends StatefulWidget {
 }
 
 class _TripPlannerPageState extends State<TripPlannerPage> {
-  final TextEditingController _eventDateController =
-      TextEditingController();
+  final TextEditingController _eventDateController = TextEditingController();
 
-  final TextEditingController _arrivalDateController =
-      TextEditingController();
+  final TextEditingController _arrivalDateController = TextEditingController();
 
   final TextEditingController _departureDateController =
       TextEditingController();
 
-  final TextEditingController _budgetController =
-      TextEditingController();
+  final TextEditingController _budgetController = TextEditingController();
 
   int _budgetDeviation = 15;
   DateTime? _arrivalDate;
   DateTime? _departureDate;
-
 
   @override
   void initState() {
@@ -58,8 +53,8 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
   // ==============================
 
   Future<DateTime?> _selectDate({
-  required DateTime firstDate,
-  DateTime? initialDate,
+    required DateTime firstDate,
+    DateTime? initialDate,
   }) async {
     return await showDatePicker(
       context: context,
@@ -125,19 +120,17 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: scheme.surface,
 
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor: scheme.surface,
         elevation: 0,
 
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColors.darkText,
-          ),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
         ),
 
         title: Text(
@@ -145,7 +138,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
           style: GoogleFonts.quicksand(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
 
@@ -154,12 +147,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(
-            24,
-            20,
-            24,
-            35,
-          ),
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 35),
 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,7 +161,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                 style: GoogleFonts.quicksand(
                   fontSize: 30,
                   fontWeight: FontWeight.w800,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
 
@@ -184,7 +172,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.secondaryText,
+                  color: scheme.onSurfaceVariant,
                   height: 1.4,
                 ),
               ),
@@ -194,11 +182,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
               // =========================
               // SECTION 1 — JOURNEY
               // =========================
-
-              const SectionTitle(
-                number: '1',
-                title: 'Your journey',
-              ),
+              const SectionTitle(number: '1', title: 'Your journey'),
 
               const SizedBox(height: 18),
 
@@ -221,11 +205,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
               // =========================
               // SECTION 2 — EVENT
               // =========================
-
-              const SectionTitle(
-                number: '2',
-                title: 'Your event',
-              ),
+              const SectionTitle(number: '2', title: 'Your event'),
 
               const SizedBox(height: 18),
 
@@ -252,18 +232,14 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                 height: 150,
 
                 decoration: BoxDecoration(
-                  color: AppColors.lightPurple,
+                  color: scheme.primaryContainer,
                   borderRadius: BorderRadius.circular(20),
                 ),
 
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
-                      Icons.map_rounded,
-                      size: 44,
-                      color: AppColors.purple,
-                    ),
+                    Icon(Icons.map_rounded, size: 44, color: scheme.primary),
 
                     const SizedBox(height: 8),
 
@@ -272,7 +248,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                       style: GoogleFonts.quicksand(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.darkText,
+                        color: scheme.onSurface,
                       ),
                     ),
 
@@ -282,7 +258,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                       'Interactive map will be added later',
                       style: GoogleFonts.quicksand(
                         fontSize: 12,
-                        color: AppColors.secondaryText,
+                        color: scheme.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -315,11 +291,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
               // =========================
               // SECTION 3 — STAY
               // =========================
-
-              const SectionTitle(
-                number: '3',
-                title: 'Your stay',
-              ),
+              const SectionTitle(number: '3', title: 'Your stay'),
 
               const SizedBox(height: 18),
 
@@ -343,8 +315,9 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                           setState(() {
                             _arrivalDate = selectedDate;
 
-                            _arrivalDateController.text =
-                                _formatDate(selectedDate);
+                            _arrivalDateController.text = _formatDate(
+                              selectedDate,
+                            );
 
                             // Если старая дата отъезда теперь раньше
                             // новой даты приезда — сбрасываем её.
@@ -386,8 +359,9 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                                 setState(() {
                                   _departureDate = selectedDate;
 
-                                  _departureDateController.text =
-                                      _formatDate(selectedDate);
+                                  _departureDateController.text = _formatDate(
+                                    selectedDate,
+                                  );
                                 });
                               }
                             },
@@ -401,11 +375,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
               // =========================
               // SECTION 4 — BUDGET
               // =========================
-
-              const SectionTitle(
-                number: '4',
-                title: 'Your budget',
-              ),
+              const SectionTitle(number: '4', title: 'Your budget'),
 
               const SizedBox(height: 18),
 
@@ -434,7 +404,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
 
@@ -443,7 +413,6 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
               // =========================
               // DEVIATION CONTROL
               // =========================
-
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -451,7 +420,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                 ),
 
                 decoration: BoxDecoration(
-                  color: AppColors.fieldBackground,
+                  color: scheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(18),
                 ),
 
@@ -469,7 +438,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                       style: GoogleFonts.quicksand(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.darkText,
+                        color: scheme.onSurface,
                       ),
                     ),
 
@@ -488,23 +457,19 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
               // =========================
               // CALCULATED BUDGET RANGE
               // =========================
-
               Container(
                 width: double.infinity,
 
                 padding: const EdgeInsets.all(16),
 
                 decoration: BoxDecoration(
-                  color: AppColors.lightPurple,
+                  color: scheme.primaryContainer,
                   borderRadius: BorderRadius.circular(18),
                 ),
 
                 child: Row(
                   children: [
-                    const Icon(
-                      Icons.info_outline_rounded,
-                      color: AppColors.purple,
-                    ),
+                    Icon(Icons.info_outline_rounded, color: scheme.primary),
 
                     const SizedBox(width: 12),
 
@@ -515,7 +480,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                           'Estimated budget range',
                           style: GoogleFonts.quicksand(
                             fontSize: 12,
-                            color: AppColors.secondaryText,
+                            color: scheme.onSurfaceVariant,
                           ),
                         ),
 
@@ -527,7 +492,7 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
                           style: GoogleFonts.quicksand(
                             fontSize: 17,
                             fontWeight: FontWeight.w700,
-                            color: AppColors.darkText,
+                            color: scheme.onSurface,
                           ),
                         ),
                       ],
@@ -541,7 +506,6 @@ class _TripPlannerPageState extends State<TripPlannerPage> {
               // =========================
               // BUILD ROUTE BUTTON
               // =========================
-
               AppButton(
                 text: 'Build my route',
                 icon: Icons.arrow_forward_rounded,
@@ -563,15 +527,13 @@ class _DeviationButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
 
-  const _DeviationButton({
-    required this.icon,
-    required this.onPressed,
-  });
+  const _DeviationButton({required this.icon, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Material(
-      color: AppColors.white,
+      color: scheme.surface,
       shape: const CircleBorder(),
 
       child: InkWell(
@@ -582,11 +544,7 @@ class _DeviationButton extends StatelessWidget {
           width: 36,
           height: 36,
 
-          child: Icon(
-            icon,
-            size: 18,
-            color: AppColors.purple,
-          ),
+          child: Icon(icon, size: 18, color: scheme.primary),
         ),
       ),
     );

@@ -26,12 +26,14 @@ class UserReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final statuses = Theme.of(context).extension<AppStatusColors>()!;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(18),
 
       decoration: BoxDecoration(
-        color: AppColors.fieldBackground,
+        color: scheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(20),
       ),
 
@@ -40,10 +42,7 @@ class UserReviewCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(
-                Icons.location_on_outlined,
-                color: AppColors.purple,
-              ),
+              Icon(Icons.location_on_outlined, color: scheme.primary),
 
               const SizedBox(width: 8),
 
@@ -53,7 +52,7 @@ class UserReviewCard extends StatelessWidget {
                   style: GoogleFonts.quicksand(
                     fontSize: 17,
                     fontWeight: FontWeight.w800,
-                    color: AppColors.darkText,
+                    color: scheme.onSurface,
                   ),
                 ),
               ),
@@ -62,7 +61,7 @@ class UserReviewCard extends StatelessWidget {
                 date,
                 style: GoogleFonts.quicksand(
                   fontSize: 12,
-                  color: AppColors.secondaryText,
+                  color: scheme.onSurfaceVariant,
                 ),
               ),
             ],
@@ -75,25 +74,20 @@ class UserReviewCard extends StatelessWidget {
             style: GoogleFonts.quicksand(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: AppColors.secondaryText,
+              color: scheme.onSurfaceVariant,
             ),
           ),
 
           const SizedBox(height: 12),
 
           Row(
-            children: List.generate(
-              5,
-              (index) {
-                return Icon(
-                  index < rating
-                      ? Icons.star_rounded
-                      : Icons.star_border_rounded,
-                  size: 20,
-                  color: Colors.amber,
-                );
-              },
-            ),
+            children: List.generate(5, (index) {
+              return Icon(
+                index < rating ? Icons.star_rounded : Icons.star_border_rounded,
+                size: 20,
+                color: statuses.warning,
+              );
+            }),
           ),
 
           const SizedBox(height: 12),
@@ -103,41 +97,29 @@ class UserReviewCard extends StatelessWidget {
             style: GoogleFonts.quicksand(
               fontSize: 14,
               height: 1.5,
-              color: AppColors.darkText,
+              color: scheme.onSurface,
             ),
           ),
 
           const SizedBox(height: 14),
 
-          const Divider(
-            color: AppColors.lightPurple,
-          ),
+          Divider(color: scheme.primaryContainer),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton.icon(
                 onPressed: onEdit,
-                icon: const Icon(
-                  Icons.edit_outlined,
-                  size: 18,
-                ),
+                icon: const Icon(Icons.edit_outlined, size: 18),
                 label: const Text('Edit'),
-                style: TextButton.styleFrom(
-                  foregroundColor: AppColors.purple,
-                ),
+                style: TextButton.styleFrom(foregroundColor: scheme.primary),
               ),
 
               TextButton.icon(
                 onPressed: onDelete,
-                icon: const Icon(
-                  Icons.delete_outline_rounded,
-                  size: 18,
-                ),
+                icon: const Icon(Icons.delete_outline_rounded, size: 18),
                 label: const Text('Delete'),
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.redAccent,
-                ),
+                style: TextButton.styleFrom(foregroundColor: scheme.error),
               ),
             ],
           ),

@@ -17,12 +17,14 @@ class PriceSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final statuses = Theme.of(context).extension<AppStatusColors>()!;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
 
       decoration: BoxDecoration(
-        color: AppColors.lightPurple,
+        color: scheme.primaryContainer,
         borderRadius: BorderRadius.circular(22),
       ),
 
@@ -34,7 +36,7 @@ class PriceSummaryCard extends StatelessWidget {
             style: GoogleFonts.quicksand(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: AppColors.secondaryText,
+              color: scheme.onSurfaceVariant,
             ),
           ),
 
@@ -45,20 +47,17 @@ class PriceSummaryCard extends StatelessWidget {
             style: GoogleFonts.quicksand(
               fontSize: 30,
               fontWeight: FontWeight.w800,
-              color: AppColors.darkText,
+              color: scheme.onSurface,
             ),
           ),
 
           const SizedBox(height: 14),
 
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 8,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
 
             decoration: BoxDecoration(
-              color: AppColors.white,
+              color: scheme.surface,
               borderRadius: BorderRadius.circular(14),
             ),
 
@@ -70,9 +69,7 @@ class PriceSummaryCard extends StatelessWidget {
                       ? Icons.check_circle_outline_rounded
                       : Icons.warning_amber_rounded,
                   size: 19,
-                  color: isWithinBudget
-                      ? AppColors.purple
-                      : Colors.orange,
+                  color: isWithinBudget ? scheme.primary : statuses.warning,
                 ),
 
                 const SizedBox(width: 7),
@@ -83,7 +80,7 @@ class PriceSummaryCard extends StatelessWidget {
                     style: GoogleFonts.quicksand(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
-                      color: AppColors.darkText,
+                      color: scheme.onSurface,
                     ),
                   ),
                 ),

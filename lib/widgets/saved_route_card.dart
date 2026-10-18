@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
-
 class SavedRouteCard extends StatelessWidget {
   final String destination;
   final String event;
@@ -34,25 +32,20 @@ class SavedRouteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 10,
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
 
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: scheme.surface,
 
         borderRadius: BorderRadius.circular(24),
 
-        border: Border.all(
-          color: AppColors.lightPurple,
-          width: 1.5,
-        ),
+        border: Border.all(color: scheme.primaryContainer, width: 1.5),
 
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
+            color: scheme.shadow.withValues(alpha: 0.04),
             blurRadius: 14,
             offset: const Offset(0, 6),
           ),
@@ -60,7 +53,7 @@ class SavedRouteCard extends StatelessWidget {
       ),
 
       child: Material(
-        color: Colors.transparent,
+        color: scheme.surface.withValues(alpha: 0),
         borderRadius: BorderRadius.circular(24),
 
         child: InkWell(
@@ -83,14 +76,14 @@ class SavedRouteCard extends StatelessWidget {
                       width: 44,
                       height: 44,
 
-                      decoration: const BoxDecoration(
-                        color: AppColors.lightPurple,
+                      decoration: BoxDecoration(
+                        color: scheme.primaryContainer,
                         shape: BoxShape.circle,
                       ),
 
-                      child: const Icon(
+                      child: Icon(
                         Icons.location_on_outlined,
-                        color: AppColors.purple,
+                        color: scheme.primary,
                       ),
                     ),
 
@@ -105,7 +98,7 @@ class SavedRouteCard extends StatelessWidget {
                             style: GoogleFonts.quicksand(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
-                              color: AppColors.darkText,
+                              color: scheme.onSurface,
                             ),
                           ),
 
@@ -116,7 +109,7 @@ class SavedRouteCard extends StatelessWidget {
                             style: GoogleFonts.quicksand(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: AppColors.secondaryText,
+                              color: scheme.onSurfaceVariant,
                             ),
                           ),
                         ],
@@ -130,13 +123,12 @@ class SavedRouteCard extends StatelessWidget {
                 // =========================
                 // DATE
                 // =========================
-
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.calendar_month_outlined,
                       size: 18,
-                      color: AppColors.secondaryText,
+                      color: scheme.onSurfaceVariant,
                     ),
 
                     const SizedBox(width: 8),
@@ -146,7 +138,7 @@ class SavedRouteCard extends StatelessWidget {
                       style: GoogleFonts.quicksand(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.secondaryText,
+                        color: scheme.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -157,20 +149,16 @@ class SavedRouteCard extends StatelessWidget {
                 // =========================
                 // PRICE + TIME
                 // =========================
-
                 Row(
                   children: [
                     Expanded(
-                      child: _MainValue(
-                        value: price,
-                        label: 'Total price',
-                      ),
+                      child: _MainValue(value: price, label: 'Total price'),
                     ),
 
                     Container(
                       width: 1,
                       height: 48,
-                      color: AppColors.lightPurple,
+                      color: scheme.primaryContainer,
                     ),
 
                     Expanded(
@@ -187,7 +175,6 @@ class SavedRouteCard extends StatelessWidget {
                 // =========================
                 // TRANSPORT
                 // =========================
-
                 _InfoRow(
                   icon: Icons.route_outlined,
                   title: 'Transport',
@@ -207,10 +194,7 @@ class SavedRouteCard extends StatelessWidget {
                 // =========================
                 // ACTIONS
                 // =========================
-
-                const Divider(
-                  color: AppColors.lightPurple,
-                ),
+                Divider(color: scheme.primaryContainer),
 
                 const SizedBox(height: 8),
 
@@ -220,10 +204,7 @@ class SavedRouteCard extends StatelessWidget {
                       child: OutlinedButton.icon(
                         onPressed: onEdit,
 
-                        icon: const Icon(
-                          Icons.edit_outlined,
-                          size: 19,
-                        ),
+                        icon: const Icon(Icons.edit_outlined, size: 19),
 
                         label: Text(
                           'Edit',
@@ -233,11 +214,9 @@ class SavedRouteCard extends StatelessWidget {
                         ),
 
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: AppColors.purple,
+                          foregroundColor: scheme.primary,
 
-                          side: const BorderSide(
-                            color: AppColors.purple,
-                          ),
+                          side: BorderSide(color: scheme.primary),
 
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(14),
@@ -265,7 +244,7 @@ class SavedRouteCard extends StatelessWidget {
                         ),
 
                         style: TextButton.styleFrom(
-                          foregroundColor: Colors.redAccent,
+                          foregroundColor: scheme.error,
                         ),
                       ),
                     ),
@@ -284,13 +263,11 @@ class _MainValue extends StatelessWidget {
   final String value;
   final String label;
 
-  const _MainValue({
-    required this.value,
-    required this.label,
-  });
+  const _MainValue({required this.value, required this.label});
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         Text(
@@ -300,7 +277,7 @@ class _MainValue extends StatelessWidget {
           style: GoogleFonts.quicksand(
             fontSize: 23,
             fontWeight: FontWeight.w800,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
 
@@ -312,7 +289,7 @@ class _MainValue extends StatelessWidget {
 
           style: GoogleFonts.quicksand(
             fontSize: 12,
-            color: AppColors.secondaryText,
+            color: scheme.onSurfaceVariant,
           ),
         ),
       ],
@@ -333,14 +310,11 @@ class _InfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(
-          icon,
-          size: 19,
-          color: AppColors.secondaryText,
-        ),
+        Icon(icon, size: 19, color: scheme.onSurfaceVariant),
 
         const SizedBox(width: 10),
 
@@ -353,7 +327,7 @@ class _InfoRow extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.secondaryText,
+                  color: scheme.onSurfaceVariant,
                 ),
               ),
 
@@ -364,7 +338,7 @@ class _InfoRow extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
             ],

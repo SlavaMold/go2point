@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
 import '../widgets/app_button.dart';
 import '../widgets/app_logo.dart';
 import '../widgets/app_text_field.dart';
@@ -11,20 +10,15 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: scheme.surface,
 
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        elevation: 0,
-      ),
+      appBar: AppBar(backgroundColor: scheme.surface, elevation: 0),
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 28,
-            vertical: 20,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -37,7 +31,7 @@ class RegisterPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 34,
                   fontWeight: FontWeight.w800,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
 
@@ -48,16 +42,13 @@ class RegisterPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.secondaryText,
+                  color: scheme.onSurfaceVariant,
                 ),
               ),
 
               const SizedBox(height: 36),
 
-              const AppTextField(
-                label: 'Name',
-                hint: 'Your name',
-              ),
+              const AppTextField(label: 'Name', hint: 'Your name'),
 
               const SizedBox(height: 22),
 
@@ -85,10 +76,7 @@ class RegisterPage extends StatelessWidget {
 
               const SizedBox(height: 32),
 
-              AppButton(
-                text: 'Sign Up',
-                onPressed: () {},
-              ),
+              AppButton(text: 'Sign Up', onPressed: () {}),
 
               const SizedBox(height: 22),
 
@@ -99,7 +87,7 @@ class RegisterPage extends StatelessWidget {
                     'Already have an account? ',
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
-                      color: AppColors.secondaryText,
+                      color: scheme.onSurfaceVariant,
                     ),
                   ),
 
@@ -115,9 +103,9 @@ class RegisterPage extends StatelessWidget {
                       style: GoogleFonts.quicksand(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.purple,
+                        color: scheme.primary,
                         decoration: TextDecoration.underline,
-                        decorationColor: AppColors.purple,
+                        decorationColor: scheme.primary,
                       ),
                     ),
                   ),

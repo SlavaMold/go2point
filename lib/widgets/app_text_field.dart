@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
-
 class AppTextField extends StatelessWidget {
   final String label;
   final String hint;
@@ -43,6 +41,7 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -51,7 +50,7 @@ class AppTextField extends StatelessWidget {
           style: GoogleFonts.quicksand(
             fontSize: 15,
             fontWeight: FontWeight.w600,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
 
@@ -73,29 +72,21 @@ class AppTextField extends StatelessWidget {
             prefixStyle: GoogleFonts.quicksand(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: AppColors.darkText,
+              color: scheme.onSurface,
             ),
 
             prefixIcon: prefixIcon != null
-                ? Icon(
-                    prefixIcon,
-                    color: AppColors.secondaryText,
-                  )
+                ? Icon(prefixIcon, color: scheme.onSurfaceVariant)
                 : null,
 
             suffixIcon: suffixIcon != null
-                ? Icon(
-                    suffixIcon,
-                    color: AppColors.purple,
-                  )
+                ? Icon(suffixIcon, color: scheme.primary)
                 : null,
 
-            hintStyle: GoogleFonts.quicksand(
-              color: AppColors.hintText,
-            ),
+            hintStyle: GoogleFonts.quicksand(color: scheme.outlineVariant),
 
             filled: true,
-            fillColor: AppColors.fieldBackground,
+            fillColor: scheme.surfaceContainerHighest,
 
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 18,

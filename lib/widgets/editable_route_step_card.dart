@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
 import 'app_text_field.dart';
 
 class EditableRouteStepCard extends StatelessWidget {
@@ -38,13 +37,14 @@ class EditableRouteStepCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
 
       padding: const EdgeInsets.all(18),
 
       decoration: BoxDecoration(
-        color: AppColors.fieldBackground,
+        color: scheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(22),
       ),
 
@@ -61,15 +61,12 @@ class EditableRouteStepCard extends StatelessWidget {
                 width: 44,
                 height: 44,
 
-                decoration: const BoxDecoration(
-                  color: AppColors.lightPurple,
+                decoration: BoxDecoration(
+                  color: scheme.primaryContainer,
                   shape: BoxShape.circle,
                 ),
 
-                child: Icon(
-                  icon,
-                  color: AppColors.purple,
-                ),
+                child: Icon(icon, color: scheme.primary),
               ),
 
               const SizedBox(width: 12),
@@ -80,14 +77,14 @@ class EditableRouteStepCard extends StatelessWidget {
                   style: GoogleFonts.quicksand(
                     fontSize: 19,
                     fontWeight: FontWeight.w800,
-                    color: AppColors.darkText,
+                    color: scheme.onSurface,
                   ),
                 ),
               ),
 
-              const Icon(
+              Icon(
                 Icons.edit_outlined,
-                color: AppColors.secondaryText,
+                color: scheme.onSurfaceVariant,
                 size: 20,
               ),
             ],
@@ -98,7 +95,6 @@ class EditableRouteStepCard extends StatelessWidget {
           // =========================
           // FROM
           // =========================
-
           AppTextField(
             label: 'From',
             hint: 'Departure point',
@@ -111,7 +107,6 @@ class EditableRouteStepCard extends StatelessWidget {
           // =========================
           // TO
           // =========================
-
           AppTextField(
             label: 'To',
             hint: 'Destination point',
@@ -122,7 +117,6 @@ class EditableRouteStepCard extends StatelessWidget {
           // =========================
           // OPTIONAL DATES
           // =========================
-
           if (hasDepartureDate || hasArrivalDate) ...[
             const SizedBox(height: 18),
 
@@ -163,20 +157,15 @@ class EditableRouteStepCard extends StatelessWidget {
           // =========================
           // PRICE
           // =========================
-
           AppTextField(
             label: 'Price',
             hint: '0',
             prefixText: '€ ',
             prefixIcon: Icons.payments_outlined,
             controller: priceController,
-            keyboardType: const TextInputType.numberWithOptions(
-              decimal: true,
-            ),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [
-              FilteringTextInputFormatter.allow(
-                RegExp(r'^\d*[.,]?\d{0,2}'),
-              ),
+              FilteringTextInputFormatter.allow(RegExp(r'^\d*[.,]?\d{0,2}')),
             ],
           ),
         ],

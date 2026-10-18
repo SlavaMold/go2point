@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
 import '../widgets/alternative_route_card.dart';
 import '../widgets/route_summary_card.dart';
 
@@ -9,15 +8,11 @@ class AlternativeRoutesPage extends StatefulWidget {
   const AlternativeRoutesPage({super.key});
 
   @override
-  State<AlternativeRoutesPage> createState() =>
-      _AlternativeRoutesPageState();
+  State<AlternativeRoutesPage> createState() => _AlternativeRoutesPageState();
 }
 
-class _AlternativeRoutesPageState
-    extends State<AlternativeRoutesPage> {
-  final PageController _pageController = PageController(
-    viewportFraction: 0.88,
-  );
+class _AlternativeRoutesPageState extends State<AlternativeRoutesPage> {
+  final PageController _pageController = PageController(viewportFraction: 0.88);
 
   int _currentPage = 1;
 
@@ -39,19 +34,17 @@ class _AlternativeRoutesPageState
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: scheme.surface,
 
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor: scheme.surface,
         elevation: 0,
 
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColors.darkText,
-          ),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
         ),
 
         title: Text(
@@ -59,7 +52,7 @@ class _AlternativeRoutesPageState
           style: GoogleFonts.quicksand(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
 
@@ -71,12 +64,7 @@ class _AlternativeRoutesPageState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(
-                24,
-                20,
-                24,
-                0,
-              ),
+              padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +74,7 @@ class _AlternativeRoutesPageState
                     style: GoogleFonts.quicksand(
                       fontSize: 30,
                       fontWeight: FontWeight.w800,
-                      color: AppColors.darkText,
+                      color: scheme.onSurface,
                     ),
                   ),
 
@@ -97,7 +85,7 @@ class _AlternativeRoutesPageState
                     style: GoogleFonts.quicksand(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.secondaryText,
+                      color: scheme.onSurfaceVariant,
                       height: 1.4,
                     ),
                   ),
@@ -114,10 +102,10 @@ class _AlternativeRoutesPageState
 
                   Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.swipe_rounded,
                         size: 18,
-                        color: AppColors.secondaryText,
+                        color: scheme.onSurfaceVariant,
                       ),
 
                       const SizedBox(width: 8),
@@ -127,7 +115,7 @@ class _AlternativeRoutesPageState
                         style: GoogleFonts.quicksand(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.secondaryText,
+                          color: scheme.onSurfaceVariant,
                         ),
                       ),
                     ],
@@ -158,16 +146,13 @@ class _AlternativeRoutesPageState
 
                     travelTime: '11 h 40 min',
 
-                    transportChain:
-                        'Train → Bus → Metro',
+                    transportChain: 'Train → Bus → Metro',
 
                     transfers: '2 transfers',
 
-                    hotelInfo:
-                        'Budget hotel · 2 nights',
+                    hotelInfo: 'Budget hotel · 2 nights',
 
-                    budgetDifference:
-                        '€202 under your €600 budget',
+                    budgetDifference: '€202 under your €600 budget',
 
                     onViewRoute: () {},
 
@@ -183,16 +168,13 @@ class _AlternativeRoutesPageState
 
                     travelTime: '5 h 20 min',
 
-                    transportChain:
-                        'Direct flight → Metro',
+                    transportChain: 'Direct flight → Metro',
 
                     transfers: '1 transfer',
 
-                    hotelInfo:
-                        '3★ hotel · 3 nights',
+                    hotelInfo: '3★ hotel · 3 nights',
 
-                    budgetDifference:
-                        'Best match for your €600 budget',
+                    budgetDifference: 'Best match for your €600 budget',
 
                     isRecommended: true,
 
@@ -210,16 +192,13 @@ class _AlternativeRoutesPageState
 
                     travelTime: '3 h 45 min',
 
-                    transportChain:
-                        'Direct flight → Private taxi',
+                    transportChain: 'Direct flight → Private taxi',
 
                     transfers: 'No public transport transfers',
 
-                    hotelInfo:
-                        '4★ hotel · 3 nights',
+                    hotelInfo: '4★ hotel · 3 nights',
 
-                    budgetDifference:
-                        '€260 over your €600 budget',
+                    budgetDifference: '€260 over your €600 budget',
 
                     onViewRoute: () {},
 
@@ -233,33 +212,24 @@ class _AlternativeRoutesPageState
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                3,
-                (index) {
-                  final isActive =
-                      index == _currentPage;
+              children: List.generate(3, (index) {
+                final isActive = index == _currentPage;
 
-                  return AnimatedContainer(
-                    duration:
-                        const Duration(milliseconds: 200),
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
 
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 4),
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
 
-                    width: isActive ? 22 : 8,
-                    height: 8,
+                  width: isActive ? 22 : 8,
+                  height: 8,
 
-                    decoration: BoxDecoration(
-                      color: isActive
-                          ? AppColors.purple
-                          : AppColors.lightPurple,
+                  decoration: BoxDecoration(
+                    color: isActive ? scheme.primary : scheme.primaryContainer,
 
-                      borderRadius:
-                          BorderRadius.circular(10),
-                    ),
-                  );
-                },
-              ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                );
+              }),
             ),
 
             const SizedBox(height: 14),

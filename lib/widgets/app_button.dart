@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
-
 class AppButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
@@ -17,6 +15,7 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return SizedBox(
       width: double.infinity,
       height: 58,
@@ -24,8 +23,8 @@ class AppButton extends StatelessWidget {
         onPressed: onPressed,
 
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.purple,
-          foregroundColor: AppColors.white,
+          backgroundColor: scheme.primary,
+          foregroundColor: scheme.onPrimary,
           elevation: 0,
 
           shape: RoundedRectangleBorder(
@@ -44,10 +43,7 @@ class AppButton extends StatelessWidget {
               ),
             ),
 
-            if (icon != null) ...[
-              const SizedBox(width: 10),
-              Icon(icon),
-            ],
+            if (icon != null) ...[const SizedBox(width: 10), Icon(icon)],
           ],
         ),
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
 import '../widgets/app_button.dart';
 import '../widgets/price_summary_card.dart';
 import '../widgets/route_step_card.dart';
@@ -12,19 +11,17 @@ class RouteDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: scheme.surface,
 
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor: scheme.surface,
         elevation: 0,
 
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColors.darkText,
-          ),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
         ),
 
         title: Text(
@@ -32,7 +29,7 @@ class RouteDetailsPage extends StatelessWidget {
           style: GoogleFonts.quicksand(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
 
@@ -41,12 +38,7 @@ class RouteDetailsPage extends StatelessWidget {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(
-            24,
-            20,
-            24,
-            35,
-          ),
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 35),
 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +48,7 @@ class RouteDetailsPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 30,
                   fontWeight: FontWeight.w800,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
 
@@ -67,7 +59,7 @@ class RouteDetailsPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.secondaryText,
+                  color: scheme.onSurfaceVariant,
                   height: 1.4,
                 ),
               ),
@@ -77,7 +69,6 @@ class RouteDetailsPage extends StatelessWidget {
               // -------------------------
               // ROUTE SUMMARY
               // -------------------------
-
               const RouteSummaryCard(
                 destination: 'Budapest, Hungary',
                 event: 'Metallica concert',
@@ -91,7 +82,7 @@ class RouteDetailsPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 21,
                   fontWeight: FontWeight.w800,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
 
@@ -100,7 +91,6 @@ class RouteDetailsPage extends StatelessWidget {
               // -------------------------
               // FLIGHT
               // -------------------------
-
               const RouteStepCard(
                 icon: Icons.flight_takeoff_rounded,
                 title: 'Flight',
@@ -113,7 +103,6 @@ class RouteDetailsPage extends StatelessWidget {
               // -------------------------
               // AIRPORT TRANSFER
               // -------------------------
-
               const RouteStepCard(
                 icon: Icons.directions_bus_outlined,
                 title: 'Airport transfer',
@@ -126,7 +115,6 @@ class RouteDetailsPage extends StatelessWidget {
               // -------------------------
               // HOTEL
               // -------------------------
-
               const RouteStepCard(
                 icon: Icons.hotel_outlined,
                 title: 'Hotel',
@@ -139,7 +127,6 @@ class RouteDetailsPage extends StatelessWidget {
               // -------------------------
               // EVENT
               // -------------------------
-
               const RouteStepCard(
                 icon: Icons.confirmation_number_outlined,
                 title: 'Event ticket',
@@ -152,7 +139,6 @@ class RouteDetailsPage extends StatelessWidget {
               // -------------------------
               // LOCAL TRANSPORT
               // -------------------------
-
               const RouteStepCard(
                 icon: Icons.directions_subway_outlined,
                 title: 'Local transport',
@@ -165,7 +151,6 @@ class RouteDetailsPage extends StatelessWidget {
               // -------------------------
               // RETURN TO AIRPORT
               // -------------------------
-
               const RouteStepCard(
                 icon: Icons.airport_shuttle_outlined,
                 title: 'Return to airport',
@@ -180,7 +165,7 @@ class RouteDetailsPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 21,
                   fontWeight: FontWeight.w800,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
 
@@ -197,7 +182,6 @@ class RouteDetailsPage extends StatelessWidget {
               // -------------------------
               // ACTIONS
               // -------------------------
-
               AppButton(
                 text: 'Save route',
                 icon: Icons.bookmark_border_rounded,
@@ -212,11 +196,8 @@ class RouteDetailsPage extends StatelessWidget {
                 child: OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: AppColors.darkText,
-                    side: const BorderSide(
-                      color: AppColors.purple,
-                      width: 1.5,
-                    ),
+                    foregroundColor: scheme.onSurface,
+                    side: BorderSide(color: scheme.primary, width: 1.5),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
@@ -224,10 +205,7 @@ class RouteDetailsPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
-                        Icons.alt_route_rounded,
-                        color: AppColors.purple,
-                      ),
+                      Icon(Icons.alt_route_rounded, color: scheme.primary),
 
                       const SizedBox(width: 10),
 
@@ -236,7 +214,7 @@ class RouteDetailsPage extends StatelessWidget {
                         style: GoogleFonts.quicksand(
                           fontSize: 17,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.darkText,
+                          color: scheme.onSurface,
                         ),
                       ),
                     ],
@@ -249,19 +227,16 @@ class RouteDetailsPage extends StatelessWidget {
               TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
-                  minimumSize: const Size(
-                    double.infinity,
-                    50,
-                  ),
+                  minimumSize: const Size(double.infinity, 50),
                 ),
                 child: Text(
                   'Edit route',
                   style: GoogleFonts.quicksand(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.purple,
+                    color: scheme.primary,
                     decoration: TextDecoration.underline,
-                    decorationColor: AppColors.purple,
+                    decorationColor: scheme.primary,
                   ),
                 ),
               ),
@@ -280,18 +255,15 @@ class _RouteConnector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(
-        left: 39,
-        top: 5,
-        bottom: 5,
-      ),
+    final scheme = Theme.of(context).colorScheme;
+    return Padding(
+      padding: EdgeInsets.only(left: 39, top: 5, bottom: 5),
       child: SizedBox(
         height: 24,
         child: VerticalDivider(
           thickness: 2,
           width: 2,
-          color: AppColors.lightPurple,
+          color: scheme.primaryContainer,
         ),
       ),
     );

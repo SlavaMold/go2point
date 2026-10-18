@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
-
 class SectionTitle extends StatelessWidget {
   final String number;
   final String title;
 
-  const SectionTitle({
-    super.key,
-    required this.number,
-    required this.title,
-  });
+  const SectionTitle({super.key, required this.number, required this.title});
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Row(
       children: [
         Container(
@@ -22,8 +17,8 @@ class SectionTitle extends StatelessWidget {
           height: 32,
           alignment: Alignment.center,
 
-          decoration: const BoxDecoration(
-            color: AppColors.lightPurple,
+          decoration: BoxDecoration(
+            color: scheme.primaryContainer,
             shape: BoxShape.circle,
           ),
 
@@ -31,7 +26,7 @@ class SectionTitle extends StatelessWidget {
             number,
             style: GoogleFonts.quicksand(
               fontWeight: FontWeight.w800,
-              color: AppColors.purple,
+              color: scheme.primary,
             ),
           ),
         ),
@@ -43,7 +38,7 @@ class SectionTitle extends StatelessWidget {
           style: GoogleFonts.quicksand(
             fontSize: 19,
             fontWeight: FontWeight.w800,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
       ],

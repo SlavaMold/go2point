@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
 import '../widgets/user_review_card.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -9,19 +8,17 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: scheme.surface,
 
       appBar: AppBar(
-        backgroundColor: AppColors.white,
+        backgroundColor: scheme.surface,
         elevation: 0,
 
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColors.darkText,
-          ),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
         ),
 
         title: Text(
@@ -29,7 +26,7 @@ class ProfilePage extends StatelessWidget {
           style: GoogleFonts.quicksand(
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: AppColors.darkText,
+            color: scheme.onSurface,
           ),
         ),
 
@@ -38,12 +35,7 @@ class ProfilePage extends StatelessWidget {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(
-            24,
-            20,
-            24,
-            35,
-          ),
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 35),
 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,15 +51,15 @@ class ProfilePage extends StatelessWidget {
                       width: 92,
                       height: 92,
 
-                      decoration: const BoxDecoration(
-                        color: AppColors.lightPurple,
+                      decoration: BoxDecoration(
+                        color: scheme.primaryContainer,
                         shape: BoxShape.circle,
                       ),
 
-                      child: const Icon(
+                      child: Icon(
                         Icons.person_rounded,
                         size: 48,
-                        color: AppColors.purple,
+                        color: scheme.primary,
                       ),
                     ),
 
@@ -78,7 +70,7 @@ class ProfilePage extends StatelessWidget {
                       style: GoogleFonts.quicksand(
                         fontSize: 24,
                         fontWeight: FontWeight.w800,
-                        color: AppColors.darkText,
+                        color: scheme.onSurface,
                       ),
                     ),
 
@@ -88,7 +80,7 @@ class ProfilePage extends StatelessWidget {
                       'slava@example.com',
                       style: GoogleFonts.quicksand(
                         fontSize: 14,
-                        color: AppColors.secondaryText,
+                        color: scheme.onSurfaceVariant,
                       ),
                     ),
 
@@ -97,9 +89,7 @@ class ProfilePage extends StatelessWidget {
                     OutlinedButton.icon(
                       onPressed: () {},
 
-                      icon: const Icon(
-                        Icons.edit_outlined,
-                      ),
+                      icon: const Icon(Icons.edit_outlined),
 
                       label: Text(
                         'Edit profile',
@@ -109,11 +99,9 @@ class ProfilePage extends StatelessWidget {
                       ),
 
                       style: OutlinedButton.styleFrom(
-                        foregroundColor: AppColors.purple,
+                        foregroundColor: scheme.primary,
 
-                        side: const BorderSide(
-                          color: AppColors.purple,
-                        ),
+                        side: BorderSide(color: scheme.primary),
 
                         padding: const EdgeInsets.symmetric(
                           horizontal: 22,
@@ -134,7 +122,6 @@ class ProfilePage extends StatelessWidget {
               // =========================
               // STATISTICS
               // =========================
-
               Row(
                 children: [
                   Expanded(
@@ -162,13 +149,12 @@ class ProfilePage extends StatelessWidget {
               // =========================
               // REVIEWS
               // =========================
-
               Text(
                 'Your reviews',
                 style: GoogleFonts.quicksand(
                   fontSize: 21,
                   fontWeight: FontWeight.w800,
-                  color: AppColors.darkText,
+                  color: scheme.onSurface,
                 ),
               ),
 
@@ -178,7 +164,7 @@ class ProfilePage extends StatelessWidget {
                 'Reviews you left after your journeys.',
                 style: GoogleFonts.quicksand(
                   fontSize: 14,
-                  color: AppColors.secondaryText,
+                  color: scheme.onSurfaceVariant,
                 ),
               ),
 
@@ -188,8 +174,7 @@ class ProfilePage extends StatelessWidget {
                 destination: 'Budapest, Hungary',
                 routeTitle: 'Balanced route',
                 rating: 5,
-                reviewText:
-                    'Everything was well balanced. The flight was convenient and the hotel was close to the event.',
+                reviewText: 'Everything was well balanced. The flight was convenient and the hotel was close to the event.',
                 date: '18/10/2026',
                 onEdit: () {},
                 onDelete: () {},
@@ -201,8 +186,7 @@ class ProfilePage extends StatelessWidget {
                 destination: 'Bucharest, Romania',
                 routeTitle: 'Cheapest route',
                 rating: 4,
-                reviewText:
-                    'Good option for the price. The journey took longer than expected, but overall it was worth it.',
+                reviewText: 'Good option for the price. The journey took longer than expected, but overall it was worth it.',
                 date: '09/08/2026',
                 onEdit: () {},
                 onDelete: () {},
@@ -228,24 +212,18 @@ class _ProfileStatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 18,
-        horizontal: 14,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 14),
 
       decoration: BoxDecoration(
-        color: AppColors.fieldBackground,
+        color: scheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(18),
       ),
 
       child: Column(
         children: [
-          Icon(
-            icon,
-            color: AppColors.purple,
-            size: 25,
-          ),
+          Icon(icon, color: scheme.primary, size: 25),
 
           const SizedBox(height: 8),
 
@@ -254,7 +232,7 @@ class _ProfileStatCard extends StatelessWidget {
             style: GoogleFonts.quicksand(
               fontSize: 22,
               fontWeight: FontWeight.w800,
-              color: AppColors.darkText,
+              color: scheme.onSurface,
             ),
           ),
 
@@ -265,7 +243,7 @@ class _ProfileStatCard extends StatelessWidget {
             textAlign: TextAlign.center,
             style: GoogleFonts.quicksand(
               fontSize: 12,
-              color: AppColors.secondaryText,
+              color: scheme.onSurfaceVariant,
             ),
           ),
         ],

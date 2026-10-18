@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../theme/app_colors.dart';
-
 class RouteStepCard extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -19,12 +17,13 @@ class RouteStepCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(18),
 
       decoration: BoxDecoration(
-        color: AppColors.fieldBackground,
+        color: scheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(20),
       ),
 
@@ -34,15 +33,11 @@ class RouteStepCard extends StatelessWidget {
           Container(
             width: 44,
             height: 44,
-            decoration: const BoxDecoration(
-              color: AppColors.lightPurple,
+            decoration: BoxDecoration(
+              color: scheme.primaryContainer,
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              icon,
-              color: AppColors.purple,
-              size: 24,
-            ),
+            child: Icon(icon, color: scheme.primary, size: 24),
           ),
 
           const SizedBox(width: 14),
@@ -56,7 +51,7 @@ class RouteStepCard extends StatelessWidget {
                   style: GoogleFonts.quicksand(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.darkText,
+                    color: scheme.onSurface,
                   ),
                 ),
 
@@ -66,7 +61,7 @@ class RouteStepCard extends StatelessWidget {
                   subtitle,
                   style: GoogleFonts.quicksand(
                     fontSize: 14,
-                    color: AppColors.secondaryText,
+                    color: scheme.onSurfaceVariant,
                   ),
                 ),
               ],
@@ -80,7 +75,7 @@ class RouteStepCard extends StatelessWidget {
             style: GoogleFonts.quicksand(
               fontSize: 17,
               fontWeight: FontWeight.w800,
-              color: AppColors.darkText,
+              color: scheme.onSurface,
             ),
           ),
         ],
