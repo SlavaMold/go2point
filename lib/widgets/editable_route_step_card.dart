@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../validation/trip_validators.dart';
+import '../validation/money_input_formatter.dart';
 
 import 'app_text_field.dart';
 
@@ -15,8 +17,12 @@ class EditableRouteStepCard extends StatelessWidget {
   final TextEditingController? departureDateController;
   final TextEditingController? arrivalDateController;
 
+  final FormFieldValidator<String>? departureDateValidator;
+  final FormFieldValidator<String>? arrivalDateValidator;
+
   final VoidCallback? onDepartureDateTap;
   final VoidCallback? onArrivalDateTap;
+  final ValueChanged<String>? onPriceSubmitted;
 
   const EditableRouteStepCard({
     super.key,
@@ -27,8 +33,11 @@ class EditableRouteStepCard extends StatelessWidget {
     required this.priceController,
     this.departureDateController,
     this.arrivalDateController,
+    this.departureDateValidator,
+    this.arrivalDateValidator,
     this.onDepartureDateTap,
     this.onArrivalDateTap,
+    this.onPriceSubmitted,
   });
 
   bool get hasDepartureDate => departureDateController != null;
@@ -100,6 +109,7 @@ class EditableRouteStepCard extends StatelessWidget {
             hint: 'Departure point',
             prefixIcon: Icons.trip_origin_rounded,
             controller: fromController,
+            validator: TripValidators.requiredText,
           ),
 
           const SizedBox(height: 18),
@@ -112,6 +122,7 @@ class EditableRouteStepCard extends StatelessWidget {
             hint: 'Destination point',
             prefixIcon: Icons.location_on_outlined,
             controller: toController,
+            validator: TripValidators.requiredText,
           ),
 
           // =========================
@@ -129,6 +140,7 @@ class EditableRouteStepCard extends StatelessWidget {
                       hint: 'dd/mm/yyyy',
                       prefixIcon: Icons.calendar_month_outlined,
                       controller: departureDateController,
+                      validator: departureDateValidator ?? TripValidators.date,
                       readOnly: true,
                       onTap: onDepartureDateTap,
                     ),
@@ -144,6 +156,7 @@ class EditableRouteStepCard extends StatelessWidget {
                       hint: 'dd/mm/yyyy',
                       prefixIcon: Icons.calendar_month_outlined,
                       controller: arrivalDateController,
+                      validator: arrivalDateValidator ?? TripValidators.date,
                       readOnly: true,
                       onTap: onArrivalDateTap,
                     ),
@@ -163,10 +176,13 @@ class EditableRouteStepCard extends StatelessWidget {
             prefixText: '€ ',
             prefixIcon: Icons.payments_outlined,
             controller: priceController,
+            validator: TripValidators.price,
+            textInputAction: onPriceSubmitted == null
+                ? TextInputAction.next
+                : TextInputAction.done,
+            onFieldSubmitted: onPriceSubmitted,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'^\d*[.,]?\d{0,2}')),
-            ],
+            inputFormatters: [MoneyInputFormatter()],
           ),
         ],
       ),

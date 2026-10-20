@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../validation/trip_validators.dart';
+import '../validation/money_input_formatter.dart';
 
 import 'app_text_field.dart';
 
@@ -10,6 +12,7 @@ class EditableEventCard extends StatelessWidget {
   final TextEditingController dateController;
   final TextEditingController priceController;
 
+  final FormFieldValidator<String>? dateValidator;
   final VoidCallback onDateTap;
 
   const EditableEventCard({
@@ -19,6 +22,7 @@ class EditableEventCard extends StatelessWidget {
     required this.dateController,
     required this.priceController,
     required this.onDateTap,
+    this.dateValidator,
   });
 
   @override
@@ -89,6 +93,7 @@ class EditableEventCard extends StatelessWidget {
             hint: 'Enter event name',
             prefixIcon: Icons.event_outlined,
             controller: nameController,
+            validator: TripValidators.requiredText,
           ),
 
           const SizedBox(height: 18),
@@ -101,6 +106,7 @@ class EditableEventCard extends StatelessWidget {
             hint: 'Enter event address',
             prefixIcon: Icons.location_on_outlined,
             controller: addressController,
+            validator: TripValidators.requiredText,
           ),
 
           const SizedBox(height: 18),
@@ -114,6 +120,7 @@ class EditableEventCard extends StatelessWidget {
             prefixIcon: Icons.calendar_month_outlined,
             suffixIcon: Icons.calendar_today_outlined,
             controller: dateController,
+            validator: dateValidator ?? TripValidators.date,
             readOnly: true,
             onTap: onDateTap,
           ),
@@ -129,12 +136,11 @@ class EditableEventCard extends StatelessWidget {
             prefixText: '€ ',
             prefixIcon: Icons.payments_outlined,
             controller: priceController,
+            validator: TripValidators.price,
 
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
 
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'^\d*[.,]?\d{0,2}')),
-            ],
+            inputFormatters: [MoneyInputFormatter()],
           ),
         ],
       ),

@@ -35,11 +35,14 @@ class AppButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              text,
-              style: GoogleFonts.quicksand(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
+            Flexible(
+              child: Text(
+                text,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.quicksand(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
 

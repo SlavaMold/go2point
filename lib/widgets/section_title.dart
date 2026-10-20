@@ -33,12 +33,14 @@ class SectionTitle extends StatelessWidget {
 
         const SizedBox(width: 10),
 
-        Text(
-          title,
-          style: GoogleFonts.quicksand(
-            fontSize: 19,
-            fontWeight: FontWeight.w800,
-            color: scheme.onSurface,
+        Expanded(
+          child: Text(
+            title,
+            style: GoogleFonts.quicksand(
+              fontSize: 19,
+              fontWeight: FontWeight.w800,
+              color: scheme.onSurface,
+            ),
           ),
         ),
       ],

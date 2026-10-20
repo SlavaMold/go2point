@@ -26,7 +26,7 @@ class AppLogo extends StatelessWidget {
         const SizedBox(width: 8),
 
         SvgPicture.asset(
-          'assets/icons/go2point_icon.svg',
+          'assets/logo/Logo_Go2point.svg',
           height: iconSize,
           width: iconSize,
         ),

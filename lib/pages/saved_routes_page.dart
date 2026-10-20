@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+
+import '../widgets/app_feedback.dart';
+
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../data/mock_routes.dart';
+import '../models/trip_route.dart';
 import '../widgets/saved_route_card.dart';
 
 class SavedRoutesPage extends StatefulWidget {
@@ -15,7 +21,7 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
 
   int _currentPage = 0;
 
-  final int _routesCount = 4;
+  int get _routesCount => mockSavedRoutes.length;
 
   @override
   void dispose() {
@@ -33,11 +39,6 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
       appBar: AppBar(
         backgroundColor: scheme.surface,
         elevation: 0,
-
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
-        ),
 
         title: Text(
           'Saved routes',
@@ -95,7 +96,7 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 16, right: 38),
 
-                    child: PageView(
+                    child: PageView.builder(
                       controller: _pageController,
 
                       scrollDirection: Axis.vertical,
@@ -106,59 +107,25 @@ class _SavedRoutesPageState extends State<SavedRoutesPage> {
                         });
                       },
 
-                      children: [
-                        SavedRouteCard(
-                          destination: 'Budapest, Hungary',
-                          event: 'Metallica concert',
-                          dateRange: '13/10/2026 — 16/10/2026',
-                          price: '€575',
-                          travelTime: '5 h 20 min',
-                          transportChain: 'Direct flight → Metro',
-                          hotelInfo: '3★ hotel · 3 nights',
-                          onTap: () {},
-                          onEdit: () {},
-                          onRemove: () {},
-                        ),
-
-                        SavedRouteCard(
-                          destination: 'Bucharest, Romania',
-                          event: 'Rock Festival',
-                          dateRange: '04/08/2026 — 07/08/2026',
-                          price: '€310',
-                          travelTime: '7 h 15 min',
-                          transportChain: 'Train → Taxi',
-                          hotelInfo: '3★ hotel · 3 nights',
-                          onTap: () {},
-                          onEdit: () {},
-                          onRemove: () {},
-                        ),
-
-                        SavedRouteCard(
-                          destination: 'Vienna, Austria',
-                          event: 'Art Exhibition',
-                          dateRange: '21/11/2026 — 25/11/2026',
-                          price: '€690',
-                          travelTime: '4 h 10 min',
-                          transportChain: 'Flight → Airport train',
-                          hotelInfo: '4★ hotel · 4 nights',
-                          onTap: () {},
-                          onEdit: () {},
-                          onRemove: () {},
-                        ),
-
-                        SavedRouteCard(
-                          destination: 'Prague, Czech Republic',
-                          event: 'Music Festival',
-                          dateRange: '02/06/2027 — 06/06/2027',
-                          price: '€520',
-                          travelTime: '6 h 05 min',
-                          transportChain: 'Flight → Bus → Tram',
-                          hotelInfo: '3★ hotel · 4 nights',
-                          onTap: () {},
-                          onEdit: () {},
-                          onRemove: () {},
-                        ),
-                      ],
+                      itemCount: mockSavedRoutes.length,
+                      itemBuilder: (context, index) {
+                        final trip = mockSavedRoutes[index];
+                        return SavedRouteCard(
+                          destination: trip.destination,
+                          event: trip.event.from,
+                          dateRange: trip.dateRange,
+                          price: formatEuro(trip.totalPrice),
+                          travelTime: trip.travelTime,
+                          transportChain: trip.transportChain,
+                          hotelInfo: trip.hotelInfo,
+                          onTap: () => context.push('/saved/${trip.id}'),
+                          onEdit: () => context.push('/saved/${trip.id}/edit'),
+                          onRemove: () => confirmDemoRemoval(
+                            context,
+                            'route to ${trip.city}',
+                          ),
+                        );
+                      },
                     ),
                   ),
 

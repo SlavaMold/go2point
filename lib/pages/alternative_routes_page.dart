@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+
+import '../widgets/app_feedback.dart';
+
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../data/mock_routes.dart';
+import '../models/trip_route.dart';
 import '../widgets/alternative_route_card.dart';
 import '../widgets/route_summary_card.dart';
 
@@ -21,7 +27,7 @@ class _AlternativeRoutesPageState extends State<AlternativeRoutesPage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _pageController.jumpToPage(1);
+      if (mounted) _pageController.jumpToPage(1);
     });
   }
 
@@ -35,17 +41,15 @@ class _AlternativeRoutesPageState extends State<AlternativeRoutesPage> {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final summary = mockAlternativeRoutes.firstWhere(
+      (trip) => trip.isRecommended,
+    );
     return Scaffold(
       backgroundColor: scheme.surface,
 
       appBar: AppBar(
         backgroundColor: scheme.surface,
         elevation: 0,
-
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
-        ),
 
         title: Text(
           'Alternative routes',
@@ -92,10 +96,10 @@ class _AlternativeRoutesPageState extends State<AlternativeRoutesPage> {
 
                   const SizedBox(height: 24),
 
-                  const RouteSummaryCard(
-                    destination: 'Budapest, Hungary',
-                    event: 'Metallica concert',
-                    dateRange: '13/10/2026 — 16/10/2026',
+                  RouteSummaryCard(
+                    destination: summary.destination,
+                    event: summary.event.from,
+                    dateRange: summary.dateRange,
                   ),
 
                   const SizedBox(height: 18),
@@ -127,7 +131,7 @@ class _AlternativeRoutesPageState extends State<AlternativeRoutesPage> {
             const SizedBox(height: 8),
 
             Expanded(
-              child: PageView(
+              child: PageView.builder(
                 controller: _pageController,
 
                 onPageChanged: (index) {
@@ -136,75 +140,33 @@ class _AlternativeRoutesPageState extends State<AlternativeRoutesPage> {
                   });
                 },
 
-                children: [
-                  AlternativeRouteCard(
-                    type: AlternativeRouteType.cheapest,
-
-                    title: 'Save as much as possible',
-
-                    price: '€398',
-
-                    travelTime: '11 h 40 min',
-
-                    transportChain: 'Train → Bus → Metro',
-
-                    transfers: '2 transfers',
-
-                    hotelInfo: 'Budget hotel · 2 nights',
-
-                    budgetDifference: '€202 under your €600 budget',
-
-                    onViewRoute: () {},
-
-                    onSave: () {},
-                  ),
-
-                  AlternativeRouteCard(
-                    type: AlternativeRouteType.balanced,
-
-                    title: 'Best price-time balance',
-
-                    price: '€575',
-
-                    travelTime: '5 h 20 min',
-
-                    transportChain: 'Direct flight → Metro',
-
-                    transfers: '1 transfer',
-
-                    hotelInfo: '3★ hotel · 3 nights',
-
-                    budgetDifference: 'Best match for your €600 budget',
-
-                    isRecommended: true,
-
-                    onViewRoute: () {},
-
-                    onSave: () {},
-                  ),
-
-                  AlternativeRouteCard(
-                    type: AlternativeRouteType.luxury,
-
-                    title: 'Fastest and most comfortable',
-
-                    price: '€860',
-
-                    travelTime: '3 h 45 min',
-
-                    transportChain: 'Direct flight → Private taxi',
-
-                    transfers: 'No public transport transfers',
-
-                    hotelInfo: '4★ hotel · 3 nights',
-
-                    budgetDifference: '€260 over your €600 budget',
-
-                    onViewRoute: () {},
-
-                    onSave: () {},
-                  ),
-                ],
+                itemCount: mockAlternativeRoutes.length,
+                itemBuilder: (context, index) {
+                  final trip = mockAlternativeRoutes[index];
+                  return AlternativeRouteCard(
+                    type: switch (trip.category) {
+                      TripRouteCategory.cheapest =>
+                        AlternativeRouteType.cheapest,
+                      TripRouteCategory.balanced =>
+                        AlternativeRouteType.balanced,
+                      TripRouteCategory.luxury => AlternativeRouteType.luxury,
+                    },
+                    title: trip.title,
+                    price: formatEuro(trip.totalPrice),
+                    travelTime: trip.travelTime,
+                    transportChain: trip.transportChain,
+                    transfers: trip.transfers,
+                    hotelInfo: trip.hotelInfo,
+                    budgetDifference: trip.budgetDifference,
+                    isRecommended: trip.isRecommended,
+                    onViewRoute: () =>
+                        context.push('/plan/alternatives/${trip.id}'),
+                    onSave: () => showAppMessage(
+                      context,
+                      'Save confirmed. Demo data is unchanged.',
+                    ),
+                  );
+                },
               ),
             ),
 
@@ -212,7 +174,7 @@ class _AlternativeRoutesPageState extends State<AlternativeRoutesPage> {
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(3, (index) {
+              children: List.generate(mockAlternativeRoutes.length, (index) {
                 final isActive = index == _currentPage;
 
                 return AnimatedContainer(

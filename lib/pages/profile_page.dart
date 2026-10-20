@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+
+import '../widgets/app_feedback.dart';
+
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/user_review_card.dart';
@@ -16,11 +20,6 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: scheme.surface,
         elevation: 0,
 
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
-        ),
-
         title: Text(
           'Profile',
           style: GoogleFonts.quicksand(
@@ -31,6 +30,23 @@ class ProfilePage extends StatelessWidget {
         ),
 
         centerTitle: true,
+        actions: [
+          IconButton(
+            tooltip: 'Sign out',
+            onPressed: () async {
+              final ok = await confirmAction(
+                context,
+                title: 'Sign out?',
+                message: 'Do you want to leave your account?',
+                confirmLabel: 'Sign out',
+              );
+              if (!context.mounted || !ok) return;
+              showAppMessage(context, 'Signed out.');
+              context.go('/login');
+            },
+            icon: const Icon(Icons.logout_rounded),
+          ),
+        ],
       ),
 
       body: SafeArea(
@@ -87,7 +103,10 @@ class ProfilePage extends StatelessWidget {
                     const SizedBox(height: 18),
 
                     OutlinedButton.icon(
-                      onPressed: () {},
+                      onPressed: () => showAppMessage(
+                        context,
+                        'Profile editing will be available later.',
+                      ),
 
                       icon: const Icon(Icons.edit_outlined),
 
@@ -176,8 +195,11 @@ class ProfilePage extends StatelessWidget {
                 rating: 5,
                 reviewText: 'Everything was well balanced. The flight was convenient and the hotel was close to the event.',
                 date: '18/10/2026',
-                onEdit: () {},
-                onDelete: () {},
+                onEdit: () => showAppMessage(
+                  context,
+                  'Review editing will be available later.',
+                ),
+                onDelete: () => confirmDemoRemoval(context, 'review'),
               ),
 
               const SizedBox(height: 16),
@@ -188,8 +210,11 @@ class ProfilePage extends StatelessWidget {
                 rating: 4,
                 reviewText: 'Good option for the price. The journey took longer than expected, but overall it was worth it.',
                 date: '09/08/2026',
-                onEdit: () {},
-                onDelete: () {},
+                onEdit: () => showAppMessage(
+                  context,
+                  'Review editing will be available later.',
+                ),
+                onDelete: () => confirmDemoRemoval(context, 'review'),
               ),
             ],
           ),

@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+
+import '../widgets/app_feedback.dart';
+
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../data/mock_routes.dart';
+import '../models/trip_route.dart';
+import 'not_found_page.dart';
 import '../widgets/app_button.dart';
 import '../widgets/price_summary_card.dart';
 import '../widgets/route_step_card.dart';
 import '../widgets/route_summary_card.dart';
 
 class RouteDetailsPage extends StatelessWidget {
-  const RouteDetailsPage({super.key});
+  final int id;
+
+  const RouteDetailsPage({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
+    final trip = findMockRoute(id);
+    if (trip == null) {
+      return NotFoundPage(message: 'Trip $id was not found.');
+    }
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       backgroundColor: scheme.surface,
@@ -18,11 +31,6 @@ class RouteDetailsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: scheme.surface,
         elevation: 0,
-
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.arrow_back_ios_new_rounded, color: scheme.onSurface),
-        ),
 
         title: Text(
           'Your route',
@@ -69,10 +77,10 @@ class RouteDetailsPage extends StatelessWidget {
               // -------------------------
               // ROUTE SUMMARY
               // -------------------------
-              const RouteSummaryCard(
-                destination: 'Budapest, Hungary',
-                event: 'Metallica concert',
-                dateRange: '13/10/2026 — 16/10/2026',
+              RouteSummaryCard(
+                destination: trip.destination,
+                event: trip.event.from,
+                dateRange: trip.dateRange,
               ),
 
               const SizedBox(height: 32),
@@ -88,75 +96,15 @@ class RouteDetailsPage extends StatelessWidget {
 
               const SizedBox(height: 18),
 
-              // -------------------------
-              // FLIGHT
-              // -------------------------
-              const RouteStepCard(
-                icon: Icons.flight_takeoff_rounded,
-                title: 'Flight',
-                subtitle: 'Chisinau → Budapest',
-                price: '€145',
-              ),
-
-              const _RouteConnector(),
-
-              // -------------------------
-              // AIRPORT TRANSFER
-              // -------------------------
-              const RouteStepCard(
-                icon: Icons.directions_bus_outlined,
-                title: 'Airport transfer',
-                subtitle: 'Budapest Airport → City center',
-                price: '€12',
-              ),
-
-              const _RouteConnector(),
-
-              // -------------------------
-              // HOTEL
-              // -------------------------
-              const RouteStepCard(
-                icon: Icons.hotel_outlined,
-                title: 'Hotel',
-                subtitle: '3 nights · 1.4 km from event',
-                price: '€198',
-              ),
-
-              const _RouteConnector(),
-
-              // -------------------------
-              // EVENT
-              // -------------------------
-              const RouteStepCard(
-                icon: Icons.confirmation_number_outlined,
-                title: 'Event ticket',
-                subtitle: 'Metallica · Budapest Arena',
-                price: '€85',
-              ),
-
-              const _RouteConnector(),
-
-              // -------------------------
-              // LOCAL TRANSPORT
-              // -------------------------
-              const RouteStepCard(
-                icon: Icons.directions_subway_outlined,
-                title: 'Local transport',
-                subtitle: 'Hotel ↔ Event + city transport',
-                price: '€25',
-              ),
-
-              const _RouteConnector(),
-
-              // -------------------------
-              // RETURN TO AIRPORT
-              // -------------------------
-              const RouteStepCard(
-                icon: Icons.airport_shuttle_outlined,
-                title: 'Return to airport',
-                subtitle: 'City center → Budapest Airport',
-                price: '€12',
-              ),
+              for (final (index, step) in trip.steps.indexed) ...[
+                if (index > 0) const _RouteConnector(),
+                RouteStepCard(
+                  icon: _stepIcon(step.kind),
+                  title: step.title,
+                  subtitle: step.description,
+                  price: formatEuro(step.price),
+                ),
+              ],
 
               const SizedBox(height: 32),
 
@@ -171,10 +119,12 @@ class RouteDetailsPage extends StatelessWidget {
 
               const SizedBox(height: 16),
 
-              const PriceSummaryCard(
-                totalPrice: '€477',
-                budgetStatus: 'Within your budget',
-                isWithinBudget: true,
+              PriceSummaryCard(
+                totalPrice: formatEuro(trip.totalPrice),
+                budgetStatus: trip.isWithinBudget
+                    ? 'Within your budget'
+                    : 'Over your budget',
+                isWithinBudget: trip.isWithinBudget,
               ),
 
               const SizedBox(height: 32),
@@ -185,7 +135,10 @@ class RouteDetailsPage extends StatelessWidget {
               AppButton(
                 text: 'Save route',
                 icon: Icons.bookmark_border_rounded,
-                onPressed: () {},
+                onPressed: () => showAppMessage(
+                  context,
+                  'Save confirmed. Demo data is unchanged.',
+                ),
               ),
 
               const SizedBox(height: 14),
@@ -194,7 +147,7 @@ class RouteDetailsPage extends StatelessWidget {
                 width: double.infinity,
                 height: 58,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () => context.go('/plan/alternatives'),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: scheme.onSurface,
                     side: BorderSide(color: scheme.primary, width: 1.5),
@@ -225,7 +178,8 @@ class RouteDetailsPage extends StatelessWidget {
               const SizedBox(height: 14),
 
               TextButton(
-                onPressed: () {},
+                onPressed: () =>
+                    context.push('${GoRouterState.of(context).uri.path}/edit'),
                 style: TextButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
                 ),
@@ -269,3 +223,13 @@ class _RouteConnector extends StatelessWidget {
     );
   }
 }
+
+IconData _stepIcon(TripStepKind kind) => switch (kind) {
+  TripStepKind.flight => Icons.flight_takeoff_rounded,
+  TripStepKind.train => Icons.train_outlined,
+  TripStepKind.transfer => Icons.directions_bus_outlined,
+  TripStepKind.hotel => Icons.hotel_outlined,
+  TripStepKind.event => Icons.confirmation_number_outlined,
+  TripStepKind.localTransport => Icons.directions_subway_outlined,
+  TripStepKind.returnTransfer => Icons.airport_shuttle_outlined,
+};

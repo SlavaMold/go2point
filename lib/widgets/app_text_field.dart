@@ -18,6 +18,11 @@ class AppTextField extends StatelessWidget {
   final TextInputType? keyboardType;
 
   final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
+  final FormFieldSetter<String>? onSaved;
+  final TextInputAction textInputAction;
+  final TextCapitalization textCapitalization;
+  final ValueChanged<String>? onFieldSubmitted;
 
   final VoidCallback? onTap;
 
@@ -35,6 +40,11 @@ class AppTextField extends StatelessWidget {
     this.enabled = true,
     this.keyboardType,
     this.controller,
+    this.validator,
+    this.onSaved,
+    this.textInputAction = TextInputAction.next,
+    this.textCapitalization = TextCapitalization.none,
+    this.onFieldSubmitted,
     this.onTap,
     this.inputFormatters,
   });
@@ -56,8 +66,13 @@ class AppTextField extends StatelessWidget {
 
         const SizedBox(height: 8),
 
-        TextField(
+        TextFormField(
           controller: controller,
+          validator: validator,
+          onSaved: onSaved,
+          textInputAction: textInputAction,
+          textCapitalization: textCapitalization,
+          onFieldSubmitted: onFieldSubmitted,
           obscureText: obscureText,
           readOnly: readOnly,
           enabled: enabled,
@@ -67,6 +82,7 @@ class AppTextField extends StatelessWidget {
 
           decoration: InputDecoration(
             hintText: hint,
+            errorMaxLines: 3,
             prefixText: prefixText,
 
             prefixStyle: GoogleFonts.quicksand(
